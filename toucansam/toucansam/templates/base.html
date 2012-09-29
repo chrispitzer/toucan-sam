@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block page_title %}{{ page_title }}{% endblock %}</title>
+        <!-- Bootstrap -->
+        <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    </body>
+</html>

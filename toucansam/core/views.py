@@ -1,6 +1,7 @@
-# Create your views here.
+from lib.decorators import template
 
 
+@template("home.html")
 def home(request):
     print "HOME"
 
