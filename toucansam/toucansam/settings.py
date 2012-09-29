@@ -8,6 +8,7 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+GRAPPELLI_ADMIN_TITLE = "Toucan Sam"
 
 DATABASES = {
     'default': {
@@ -106,10 +107,12 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'south',
+    'toucansam',
+    'core',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'grappelli',
+    'django.contrib.admin',
 )
 
 # A sample logging configuration. The only tangible logging
