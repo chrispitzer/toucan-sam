@@ -20,7 +20,9 @@
 
 <script type="text/javascript" charset="utf-8">
     $(function() {
-        $('#song_list').dataTable();
+        $('#song_list').dataTable({
+            bPaginate:false
+        });
     });
 </script>
 {% endblock %}
