@@ -151,6 +151,6 @@ except ImportError:
     print ("No local settings found, or it errored")
 
 try:
-    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ADDITIONAL_MIDDLEWARE_CLASSES
+    MIDDLEWARE_CLASSES += ADDITIONAL_MIDDLEWARE_CLASSES
 except NameError:
     pass
