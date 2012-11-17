@@ -8,12 +8,49 @@
 
 
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.dataTables.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+
+
+
+{% block extra_scripts %}
+<script src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        $('#song_list').dataTable();
+    });
+</script>
+{% endblock %}
+
+
+
+
 {% block content %}
 
     song list goes here!
-    <ul>
-        {% for song in songs %}
-            <li>{{ song.title }}</li>
-        {% endfor %}
-    </ul>
+    <table id="song_list" class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Key</th>
+                <th>Singers</th>
+                <th>Video</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in songs %}
+                <tr>
+                    <td>{{ song.title }}</td>
+                    <td>{{ song.artist }}</td>
+                    <td>{{ song.key }}</td>
+                    <td>{{ song.singers }}</td>
+                    <td>{{ song.video_link }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
