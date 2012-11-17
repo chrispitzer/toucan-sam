@@ -9,5 +9,25 @@
 
 
 {% block content %}
-    particular song goes here.
+    <h1>{{ song.title }}</h1>
+
+    {% if song.artist %}
+        <h4>by {{ song.artist }}</h4>
+    {% endif %}
+
+    {% if song.singers %}
+        <h4>sung by {{ song.singers }}</h4>
+    {% endif %}
+
+    {% if song.cheat_sheet %}
+        <h4>cheat sheet: {{ song.cheat_sheet }}</h4>
+    {% endif %}
+
+    {% if song.video_link %}
+        <h4>{{ song.video_link }}</h4>
+    {% endif %}
+
+    <pre>{{ song.lyrics_with_chords }}</pre>
+
+
 {% endblock %}

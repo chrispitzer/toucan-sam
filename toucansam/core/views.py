@@ -1,5 +1,7 @@
 from lib.decorators import template
 
+from django.shortcuts import get_object_or_404
+
 from . import models
 
 
@@ -18,4 +20,7 @@ def song_list(request):
 
 @template("song.html")
 def song(request, song_id):
-    print "particular: %s" % song_id
+    song = get_object_or_404(models.Song, id=song_id)
+    return {
+        "song":song,
+    }
