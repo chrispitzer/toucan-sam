@@ -55,7 +55,13 @@
                     <td>{{ song.artist }}</td>
                     <td>{{ song.key }}</td>
                     <td>{{ song.singers }}</td>
-                    <td>{{ song.video_link }}</td>
+                    <td>
+                        {% if song.video_link %}
+                            <a href="{{ song.video_link }}">
+                                video
+                            </a>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

@@ -11,21 +11,33 @@
 {% block content %}
     <h1>{{ song.title }}</h1>
 
-    {% if song.artist %}
-        <h4>by {{ song.artist }}</h4>
-    {% endif %}
+    <h4>
+        {% if song.artist %}
+            by {{ song.artist }}
+        {% endif %}
 
-    {% if song.singers %}
-        <h4>sung by {{ song.singers }}</h4>
-    {% endif %}
+        -
+
+        {% if song.singers %}
+            sung by {{ song.singers }}
+        {% endif %}
+
+        -
+
+        {% if song.video_link %}
+            <a href="{{ song.video_link }}">
+                video
+            </a>
+        {% else %}
+            no video
+        {% endif %}
+    </h4>
 
     {% if song.cheat_sheet %}
-        <h4>cheat sheet: {{ song.cheat_sheet }}</h4>
+        <h5>cheat sheet: {{ song.cheat_sheet }}</h5>
     {% endif %}
 
-    {% if song.video_link %}
-        <h4>{{ song.video_link }}</h4>
-    {% endif %}
+
 
     <pre>{{ song.lyrics_with_chords }}</pre>
 
