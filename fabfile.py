@@ -11,6 +11,10 @@ env.git_repo = 'git@zim.lofiart.com:toucan-sam.git'
 
 
 def setup():
+    """
+    PRINTS OUT YOUR TODO LIST FOR SYSTEM SETUP
+    
+    """
     print """
     1) create folders
         - create the following directories on the server: (owner doesn't matter yet)
