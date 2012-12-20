@@ -62,10 +62,11 @@ def setup():
             - your user's ssh config needs to have "ForwardAgent yes"
 
     6) add to repo
-        - create your server_config directory in your repo, follow the pattern from another project
-          all files in server_config have paths that need to be set. That's where all the configs for nginx, gunicorn, bash_profile, supervisor, etc exist.
+        - create your server-config directory in your repo, follow the pattern from another project
+          all files in server-config have paths that need to be set. That's where all the configs for nginx, gunicorn, bash_profile, supervisor, etc exist.
            - NOTE: you need bash_profile to make gunicorn work.
            - NOTE: when you are setting up nginx.conf, you will need server_name to match the domain you want nginx to serve for.
+           - NOTE: in nginx you can't have non-alpha characters in your proxy name: ie "upstream asdfasdfasdf {"
 
     7) database
         $ sudo -s
