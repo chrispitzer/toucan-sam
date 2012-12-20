@@ -112,6 +112,7 @@ def _common():
     env.sys_user = env.deploy_level + '_toucan'
     env.sys_group = 'deployers'
     env.repo_root = _j(env.path, env.project_name)
+    env.forward_agent = True
 
 def staging():
     "deploy to staging"
@@ -127,8 +128,8 @@ def live():
 
 def git_update():
     "Update the remote git repo (requires a tag to update to)"
-    pull_cmd = 'cd %s; git pull' % env.repo_root
-    run_local("ssh -A %s '%s'" % (env.host_string, pull_cmd))
+    with cd(env.repo_root):
+        run('git pull')
 
 def copy_configs():
     "Copy server configs into place"
