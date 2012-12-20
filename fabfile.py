@@ -13,8 +13,9 @@ env.git_repo = 'git@zim.lofiart.com:toucan-sam.git'
 def setup():
     """
     PRINTS OUT YOUR TODO LIST FOR SYSTEM SETUP
-    
+
     """
+
     print """
     1) create folders
         - create the following directories on the server: (owner doesn't matter yet)
@@ -138,7 +139,7 @@ def git_update():
 def copy_configs():
     "Copy server configs into place"
     with cd(env.server_config_toplevel):
-        run('cp %s/local_settings.py %s/' % (env.server_config_dir, env.app_dir))
+        run('cp %s/local_settings.py %s/toucansam/' % (env.server_config_dir, env.app_dir))
         run('cp %s/gunicorn.conf %s/' % (env.server_config_dir, _j(env.path, 'conf')))
         sudo('cp %s/nginx.conf %s' % (env.server_config_dir, '/etc/nginx/sites-available/%s-%s.conf' % (env.project_name, env.deploy_level)))
         sudo('cp %s/supervisor.conf %s' % (env.server_config_dir, '/etc/supervisor/conf.d/%s-%s.conf' % (env.project_name, env.deploy_level)))
