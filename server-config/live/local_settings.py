@@ -13,12 +13,13 @@ DATABASES = {
 
 MEDIA_ROOT = "/srv/toucan/live/media/"
 STATIC_ROOT = "/srv/toucan/live/static/"
-CHANNEL_PREFIX = "toucan"
-LOCAL_APPS = [
-    'raven.contrib.django'
-]
 
-# SENTRY_DSN = 'http://9a76e9f9844c4d328710abe08efbc7c5:3ee0050371084b378f5bdb8ca75c1a80@zim.lofiart.com:9000/2'
+# for SENTRY
+#LOCAL_APPS = [
+#    'raven.contrib.django'
+#]
+
+# SENTRY_DSN = ''
 
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = 'registration@toucan.com'

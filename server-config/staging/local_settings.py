@@ -11,7 +11,6 @@ DATABASES = {
 
 MEDIA_ROOT = "/srv/toucan/staging/media/"
 STATIC_ROOT = "/srv/toucan/staging/static/"
-CHANNEL_PREFIX = "staging"
 DEBUG = TEMPLATE_DEBUG = True
 
 
@@ -19,5 +18,4 @@ DEBUG = TEMPLATE_DEBUG = True
 # EMAIL_HOST_USER = 'test@lofiart.com'
 # EMAIL_HOST_PASSWORD='Ra1ner~8'
 # EMAIL_USE_TLS=True
-DEBUG = TEMPLATE_DEBUG = True
 
