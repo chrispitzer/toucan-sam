@@ -51,6 +51,9 @@
                         <a href="{% url song song.id %}">
                             {{ song.title }}
                         </a>
+                        {% if song.has_no_lyrics %}
+                            (no lyrics)
+                        {% endif %}
                     </td>
                     <td>{{ song.artist }}</td>
                     <td>{{ song.key }}</td>

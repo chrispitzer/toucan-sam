@@ -10,3 +10,6 @@ class Song(models.Model):
     cheat_sheet = models.CharField(max_length=255, blank=True)
     lyrics_with_chords = models.TextField(blank=True)
     video_link = models.URLField(max_length=255, blank=True)
+
+    def has_no_lyrics(self):
+        return len(self.lyrics_with_chords) < 50
