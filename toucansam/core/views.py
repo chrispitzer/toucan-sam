@@ -18,6 +18,14 @@ def song_list(request):
     }
 
 
+@template("set_list.html")
+def set_list(request):
+    songs = models.Song.objects.all()
+    return {
+        "songs":songs,
+    }
+
+
 @template("song.html")
 def song(request, song_id):
     song = get_object_or_404(models.Song, id=song_id)
