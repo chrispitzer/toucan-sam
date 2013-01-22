@@ -22,6 +22,11 @@
     .ui-state-disabled {
         display: none;
     }
+    .span7, .span5 {
+        overflow-y: scroll;
+        height:100%;
+    }
+
 </style>
 {% endblock %}
 
@@ -35,6 +40,12 @@
 
 <script type="text/javascript" charset="utf-8">
     $(function() {
+
+        var stretch_lists = function() {
+            $('.row').height(
+                $(window).height() - ( $('body').height() - $('.row').height() ) - 20
+            );
+        };
 
         var update_empty_message = function() {
             $("table").each(function() {
@@ -58,9 +69,14 @@
         }).disableSelection();
 
         update_empty_message();
-
+        stretch_lists();
+        $(window).resize(function() {
+            console.log("aaaa");
+            stretch_lists();
+        });
 
     });
+
 </script>
 {% endblock %}
 
