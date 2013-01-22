@@ -14,6 +14,15 @@
     table#song_list {
         margin-bottom: 10px;
     }
+    #song_list .set_list_only {
+        display:none;
+    }
+    #set_list .catalog_only {
+        display:none;
+    }
+    .ui-state-disabled {
+        display: none;
+    }
 </style>
 {% endblock %}
 
@@ -21,14 +30,37 @@
 
 
 {% block extra_scripts %}
-<script src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/base/jquery-ui.css" type="text/css" media="all" />
 
 <script type="text/javascript" charset="utf-8">
     $(function() {
-        $('#song_list').dataTable({
-            bPaginate:false,
-            bInfo:false
-        });
+
+        var update_empty_message = function() {
+            $("table").each(function() {
+                var rows = $(this).find("tbody tr");
+                if(rows.length == 1) {
+                    console.log(this, "0");
+                    $(this).find(".ui-state-disabled").show()
+                } else {
+                    console.log(this, "1");
+                    $(this).find(".ui-state-disabled").hide()
+                }
+            });
+        };
+
+        $("#song_list tbody, #set_list tbody" ).sortable({
+            cancel: ".ui-state-disabled",
+            connectWith: ".table tbody",
+            stop: function() {
+                update_empty_message();
+            }
+        }).disableSelection();
+
+        update_empty_message();
+
+
     });
 </script>
 {% endblock %}
@@ -37,42 +69,65 @@
 
 
 {% block content %}
+<h1>Build you a set list!</h1>
+<p><a href="{% url song_list %}">the song list is over here</a></p>
+<p>Drag items from the table on the left to the set list on the right. You can also drag-and-drop to reorder items in the setlist.</p>
 
-    <h1>Build you a set list!</h1>
-    <p><a href="{% url song_list %}">the song list is over here</a></p>
-    <table id="song_list" class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Artist</th>
-                <th>Key</th>
-                <th>Singers</th>
-                <th>Video</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for song in songs %}
+<div class="row">
+    <div class="span7">
+        <h2>Catalog</h2>
+        <table id="song_list" class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>
-                        <a href="{% url song song.id %}">
-                            {{ song.title }}
-                        </a>
-                        {% if song.has_no_lyrics %}
-                            (no lyrics)
-                        {% endif %}
-                    </td>
-                    <td>{{ song.artist }}</td>
-                    <td>{{ song.key }}</td>
-                    <td>{{ song.singers }}</td>
-                    <td>
-                        {% if song.video_link %}
-                            <a href="{{ song.video_link }}">
-                                fruitorial
-                            </a>
-                        {% endif %}
-                    </td>
+                    <th>Title</th>
+                    <th class="set_list_only">Cheat Sheet</th>
+                    <th class="catalog_only">Artist</th>
+                    <th class="catalog_only">Key</th>
+                    <th class="catalog_only">Singers</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <tr class="ui-state-disabled">
+                    <td>(no songs)</td>
+                    <td class="set_list_only"></td>
+                    <td class="catalog_only"></td>
+                    <td class="catalog_only"></td>
+                    <td class="catalog_only"></td>
+                </tr>
+                {% for song in songs %}
+                    <tr>
+                        <td>{{ song.title }}</td>
+                        <td class="set_list_only">{{ song.cheat_sheet }}</td>
+                        <td class="catalog_only">{{ song.artist }}</td>
+                        <td class="catalog_only">{{ song.key }}</td>
+                        <td class="catalog_only">{{ song.singers }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="span5">
+        <h2>Set List</h2>
+        <table id="set_list" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th class="set_list_only">Cheat Sheet</th>
+                    <th class="catalog_only">Artist</th>
+                    <th class="catalog_only">Key</th>
+                    <th class="catalog_only">Singers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ui-state-disabled">
+                    <td>(no songs)</td>
+                    <td class="set_list_only"></td>
+                    <td class="catalog_only"></td>
+                    <td class="catalog_only"></td>
+                    <td class="catalog_only"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
