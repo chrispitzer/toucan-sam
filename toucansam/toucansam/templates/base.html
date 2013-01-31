@@ -8,6 +8,20 @@
         <link href="{{ STATIC_URL }}fonts/3dumb/stylesheet.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}fonts/impact/stylesheet.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}fonts/gooddog/stylesheet.css" rel="stylesheet">
+        <style type="text/css" media="screen">
+            body {
+                background-image: url({{ STATIC_URL }}images/backgrounds/loops1.jpg);
+                padding-top: 55px;
+            }
+            .navbar {
+                font-family: 'GoodDogRegular';
+                font-size: 40px;
+            }
+            body .navbar .navbar-inner a {
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+        </style>
         {% block extra_css %}{% endblock %}
     </head>
     <body>
@@ -16,9 +30,10 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
+                    <li class="active"><a href="{% url home %}">Home</a></li>
+                    <li>
+                        <a href="{% url song_list %}">song catalog</a>
+                    </li>
                 </ul>
             </div>
         </div>
