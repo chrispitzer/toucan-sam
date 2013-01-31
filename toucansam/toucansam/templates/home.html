@@ -3,6 +3,27 @@
 
 
 
+{% block extra_css %}
+<style type="text/css" media="screen">
+    body {
+        background-image: url({{ STATIC_URL }}images/backgrounds/loops1.jpg);
+        padding-top: 55px;
+    }
+    .navbar {
+        font-family: 'GoodDogRegular';
+        font-size: 40px;
+    }
+    body .navbar .navbar-inner a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+</style>
+{% endblock %}
+
+
+
+
 {% block page_title %}Have a very ukule-ly day{% endblock %}
 
 
