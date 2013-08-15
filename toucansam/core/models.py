@@ -19,6 +19,9 @@ class Gig(models.Model):
     name = models.CharField(max_length=255)
     date = models.DateTimeField(null=True)
 
+    def __unicode__(self):
+        return self.name or "undefined"
+
 
 class SetItem(models.Model):
     song = models.ForeignKey(Song)
@@ -33,3 +36,6 @@ class SetList(models.Model):
     @property
     def name(self):
         return self.gig.name
+
+    def __unicode__(self):
+        return self.name or "undefined"
