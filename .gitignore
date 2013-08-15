@@ -10,3 +10,4 @@ local_settings.py
 *.js~
 okapi
 static_collected
+.idea
