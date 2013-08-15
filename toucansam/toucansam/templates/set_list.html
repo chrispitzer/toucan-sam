@@ -77,6 +77,22 @@
 
     });
 
+    function save() {
+        var song_rows  = $("#set_list tr.song");
+        var data = {
+            gig_name: $("#gig_name").val(),
+            songs: []
+        };
+        $.each(song_rows, function (i, tr) {
+            data["songs"].push($(tr).data('id'));
+        })
+        $.post("{% url core.views.set_list_ajax set_list_id %}", data, function(resp){
+            if (resp != '') {
+                window.location.href = resp;
+            }
+        });
+    }
+
 </script>
 {% endblock %}
 
@@ -110,7 +126,7 @@
                     <td class="catalog_only"></td>
                 </tr>
                 {% for song in songs %}
-                    <tr>
+                    <tr data-id="{{ song.id }}" class="song">
                         <td>{{ song.title }}</td>
                         <td class="set_list_only">{{ song.cheat_sheet }}</td>
                         <td class="catalog_only">{{ song.artist }}</td>
@@ -123,26 +139,34 @@
     </div>
     <div class="span5">
         <h2>Set List</h2>
-        <table id="set_list" class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th class="set_list_only">Cheat Sheet</th>
-                    <th class="catalog_only">Artist</th>
-                    <th class="catalog_only">Key</th>
-                    <th class="catalog_only">Singers</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="ui-state-disabled">
-                    <td>(no songs)</td>
-                    <td class="set_list_only"></td>
-                    <td class="catalog_only"></td>
-                    <td class="catalog_only"></td>
-                    <td class="catalog_only"></td>
-                </tr>
-            </tbody>
-        </table>
+        <form action="" method="post">
+            {% if gig %}
+                <h2>{{ gig.name }}</h2>
+            {% else %}
+                <label for="gig_name">Gig Name:</label>
+                <input type="text" name="gig_name" id="gig_name"></h2>
+            {% endif %}
+            <table id="set_list" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th class="set_list_only">Cheat Sheet</th>
+                        <th class="catalog_only">Artist</th>
+                        <th class="catalog_only">Key</th>
+                        <th class="catalog_only">Singers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="ui-state-disabled">
+                        <td>(no songs)</td>
+                        <td class="set_list_only"></td>
+                        <td class="catalog_only"></td>
+                        <td class="catalog_only"></td>
+                        <td class="catalog_only"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
     </div>
 </div>
 {% endblock %}

@@ -13,3 +13,19 @@ class Song(models.Model):
 
     def has_no_lyrics(self):
         return len(self.lyrics_with_chords) < 50
+
+
+class Gig(models.Model):
+    name = models.CharField(max_length=255)
+    date = models.DateTimeField(null=True)
+
+
+class SetItem(models.Model):
+    song = models.ForeignKey(Song)
+    set_list = models.ForeignKey("SetList")
+    order = models.IntegerField()
+
+
+class SetList(models.Model):
+    gig = models.ForeignKey(Gig)
+    songs = models.ManyToManyField(Song, related_name="set_lists", through=SetItem)
