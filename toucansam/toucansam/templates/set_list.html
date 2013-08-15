@@ -22,6 +22,9 @@
     #set_list .catalog_only {
         display:none;
     }
+    #gig_name_error {
+        display: none;
+    }
     .ui-state-disabled {
         display: none;
     }
@@ -91,18 +94,25 @@
 
     function save() {
         var song_rows  = $("#set_list tr.song");
-        var data = {
-            gig_name: $("#gig_name").val(),
-            songs: []
-        };
-        $.each(song_rows, function (i, tr) {
-            data["songs"].push($(tr).data('id'));
-        })
-        $.post("{% url core.views.set_list_ajax set_list_id %}", data, function(resp){
-            if (resp != '') {
-                window.location.href = resp;
-            }
-        });
+        var gig_name = $("#gig_name").val();
+        if (gig_name == "") {
+            $("#gig_name_error").text("You need to enter a name to save this set list");
+            $("#gig_name_error").show();
+        } else {
+            $("#gig_name_error").hide();
+            var data = {
+                gig_name: gig_name,
+                songs: []
+            };
+            $.each(song_rows, function (i, tr) {
+                data["songs"].push($(tr).data('id'));
+            })
+            $.post("{% url core.views.set_list_ajax set_list_id %}", data, function(resp){
+                if (resp != '') {
+                    window.location.href = resp;
+                }
+            });
+        }
     }
 
 </script>
@@ -158,6 +168,7 @@
                 <label for="gig_name">Gig Name:</label>
                 <input type="text" name="gig_name" id="gig_name" value="{{ set_list.gig.name }}"/>
             {% endif %}
+            <p id="gig_name_error" class="well"></p>
             <table id="set_list" class="table table-bordered">
                 <thead>
                     <tr>
