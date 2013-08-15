@@ -34,6 +34,7 @@ class SetListView(TemplateView):
         context.update({
             "songs": Song.objects.all(),
             "set_list_id": set_list_id,
+            "set_list": set_list
         })
         return context
 

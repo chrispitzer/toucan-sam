@@ -64,9 +64,18 @@
             cancel: ".ui-state-disabled",
             connectWith: ".table tbody",
             stop: function() {
+                save();
                 update_empty_message();
             }
         }).disableSelection();
+
+        $("#gig_name").change(function() {
+            save();
+        });
+        $("#save_set_list").submit(function() {
+            save();
+            return false;
+        })
 
         update_empty_message();
         stretch_lists();
@@ -139,12 +148,12 @@
     </div>
     <div class="span5">
         <h2>Set List</h2>
-        <form action="" method="post">
+        <form id="save_set_list" action="" method="post">
             {% if gig %}
                 <h2>{{ gig.name }}</h2>
             {% else %}
                 <label for="gig_name">Gig Name:</label>
-                <input type="text" name="gig_name" id="gig_name"></h2>
+                <input type="text" name="gig_name" id="gig_name" value="{{ set_list.gig.name }}"/>
             {% endif %}
             <table id="set_list" class="table table-bordered">
                 <thead>
@@ -164,6 +173,15 @@
                         <td class="catalog_only"></td>
                         <td class="catalog_only"></td>
                     </tr>
+                    {% for song in set_list.songs.all %}
+                        <tr data-id="{{ song.id }}" class="song">
+                            <td>{{ song.title }}</td>
+                            <td class="set_list_only">{{ song.cheat_sheet }}</td>
+                            <td class="catalog_only">{{ song.artist }}</td>
+                            <td class="catalog_only">{{ song.key }}</td>
+                            <td class="catalog_only">{{ song.singers }}</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </form>
