@@ -29,3 +29,7 @@ class SetItem(models.Model):
 class SetList(models.Model):
     gig = models.ForeignKey(Gig)
     songs = models.ManyToManyField(Song, related_name="set_lists", through=SetItem)
+
+    @property
+    def name(self):
+        return self.gig.name

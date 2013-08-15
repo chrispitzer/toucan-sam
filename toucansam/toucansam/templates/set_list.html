@@ -173,6 +173,7 @@
                         <td class="catalog_only"></td>
                         <td class="catalog_only"></td>
                     </tr>
+                    {% if set_list.id %}
                     {% for song in set_list.songs.all %}
                         <tr data-id="{{ song.id }}" class="song">
                             <td>{{ song.title }}</td>
@@ -182,6 +183,7 @@
                             <td class="catalog_only">{{ song.singers }}</td>
                         </tr>
                     {% endfor %}
+                {% endif %}
                 </tbody>
             </table>
         </form>

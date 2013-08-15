@@ -72,6 +72,16 @@ def set_list_ajax(request, set_list_id):
         return HttpResponse()
 
 
+class SetListList(TemplateView):
+    template_name = "set_list_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(SetListList, self).get_context_data(**kwargs)
+        context['set_list_list'] = SetList.objects.all()
+        return context
+
+set_list_list = SetListList.as_view()
+
 @template("song.html")
 def song(request, song_id):
     song = get_object_or_404(Song, id=song_id)
