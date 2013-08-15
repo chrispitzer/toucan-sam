@@ -3,8 +3,8 @@
 {% block page_title %}Have a very ukule-ly day{% endblock %}
 
 {% block content %}
-    <a href="{% url 'set_list' 'new' %}">New Set List</a>
-    <ul>
+    <a href="{% url 'set_list' 'new' %}" class="btn btn-primary">New Set List</a>
+    <ul id="set_list_list" class="well">
         {% for set_list in set_list_list %}
             <li>
             <a href="{% url 'set_list' set_list.id %}">{{ set_list.name|default:"(untitled)" }}</a>
