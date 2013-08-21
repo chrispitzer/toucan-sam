@@ -88,3 +88,18 @@ def song(request, song_id):
     return {
         "song": song,
     }
+
+
+class CheatSheetView(TemplateView):
+    template_name = "cheat_sheet.html"
+
+    def get_context_data(self, set_list_id=None, **kwargs):
+        context = super(CheatSheetView, self).get_context_data(**kwargs)
+        if set_list_id is not None:
+            set_list = get_object_or_404(SetList, id=set_list_id)
+            songs = set_list.ordered_songs
+        else:
+            songs = Song.objects.order_by('title')
+        halfway_point = len(songs)/2
+        context['song_halves'] = [songs[:halfway_point], songs[halfway_point:]]
+        return context

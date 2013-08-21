@@ -1,0 +1,24 @@
+<html>
+<head>
+<style>
+    table {
+        width: 50%;
+        float: left;
+    }
+</style>
+</head>
+<body>
+<table>
+{% for songs in song_halves %}
+    {% for song in songs %}
+        <tr>
+        <td>{{ song.title }}</td>
+        <td>{{ song.cheat_sheet }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <table>
+{% endfor %}
+</table>
+</body>
+</html>

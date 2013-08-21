@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from core.views import SetListView
+from core.views import SetListView, CheatSheetView
 
 urlpatterns = patterns('',
     url(r'^$', 'core.views.home', name='home'),
@@ -8,5 +8,7 @@ urlpatterns = patterns('',
     url(r'^songs/(?P<song_id>[0-9]+)?$', 'core.views.song',
         name='song'),
     url(r'^set_list_list/', 'core.views.set_list_list', name='set_list_list'),
+    url(r'^cheat_sheet/(?P<set_list_id>\d+)/?$', CheatSheetView.as_view(), name="cheat_sheet"),
+    url(r'^master_cheat_sheet/', CheatSheetView.as_view(), name="master_cheat_sheet"),
     url(r'^api/save_set_list/(?P<set_list_id>\d+|new)/?$', 'core.views.set_list_ajax'),
 )
