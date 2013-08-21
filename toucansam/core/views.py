@@ -32,7 +32,7 @@ class SetListView(TemplateView):
         else:
             set_list = get_object_or_404(SetList, id=set_list_id)
         context.update({
-            "songs": Song.objects.all(),
+            "songs": Song.objects.exclude(set_lists=set_list),
             "set_list_id": set_list_id,
             "set_list": set_list
         })
