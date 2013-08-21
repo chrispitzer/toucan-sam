@@ -188,7 +188,7 @@
                         <td class="catalog_only"></td>
                     </tr>
                     {% if set_list.id %}
-                    {% for song in set_list.songs.all %}
+                    {% for song in set_list.ordered_songs %}
                         <tr data-id="{{ song.id }}" class="song">
                             <td>{{ song.title }}</td>
                             <td class="set_list_only">{{ song.cheat_sheet }}</td>

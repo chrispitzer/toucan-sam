@@ -24,8 +24,8 @@ class Gig(models.Model):
 
 
 class SetItem(models.Model):
-    song = models.ForeignKey(Song)
-    set_list = models.ForeignKey("SetList")
+    song = models.ForeignKey(Song, related_name='setitems')
+    set_list = models.ForeignKey("SetList", related_name='setitems')
     order = models.IntegerField()
 
 
@@ -36,6 +36,10 @@ class SetList(models.Model):
     @property
     def name(self):
         return self.gig.name
+
+    @property
+    def ordered_songs(self):
+        return self.songs.order_by('setitems__order')
 
     def __unicode__(self):
         return self.name or "undefined"
