@@ -1,8 +1,9 @@
 import json
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
 from core.models import Song, Gig, SetList, SetItem
 from lib.decorators import template
 
@@ -45,31 +46,51 @@ class SetListView(TemplateView):
             gig = Gig(name=request.POST['gig_name'])
 
 
-@csrf_exempt
-def set_list_ajax(request, set_list_id):
-    if request.method != "POST":
-        return HttpResponseBadRequest()
+class AjaxException(Exception):
+    def __init__(self, msg):
+        self.message = msg
 
-    if set_list_id == "new":
-        created = True
-        set_list = SetList.objects.create(gig=Gig.objects.create())
-    else:
-        created = False
-        set_list = get_object_or_404(SetList, id=set_list_id)
+    def __unicode__(self):
+        return unicode(self.message)
 
-    set_list.gig.name = request.POST["gig_name"]
-    set_list.gig.save()
 
-    set_list.songs.clear()
-    for song_order, song_id in enumerate(request.POST.getlist('songs[]')):
-        song = Song.objects.get(id=song_id)
-        SetItem.objects.create(set_list=set_list, song=song, order=song_order)
+class AjaxView(View):
 
-    print set_list
-    if created:
-        return HttpResponse(reverse("set_list", kwargs={"set_list_id": set_list.id}))
-    else:
-        return HttpResponse()
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            content = super(AjaxView, self).dispatch(request, *args, **kwargs)
+        except AjaxException, e:
+            content = {'error': unicode(e)}
+        return HttpResponse(json.dumps(content), content_type="application/json")
+
+
+class SetListAjax(AjaxView):
+
+    def post(self, request, set_list_id):
+        gig_name = request.POST["gig_name"]
+        response_data = ''
+
+        if set_list_id == "new":
+            if SetList.objects.filter(gig__name=gig_name).exists():
+                raise AjaxException("A set named '{0}' already exists.  Be more creative.".format(gig_name))
+            else:
+                set_list = SetList.objects.create(gig=Gig.objects.create())
+                response_data = json.dumps({
+                    'refresh': reverse("set_list", kwargs={"set_list_id": set_list.id})
+                })
+        else:
+            set_list = get_object_or_404(SetList, id=set_list_id)
+
+        set_list.gig.name = gig_name
+        set_list.gig.save()
+
+        set_list.songs.clear()
+        for song_order, song_id in enumerate(request.POST.getlist('songs[]')):
+            song = Song.objects.get(id=song_id)
+            SetItem.objects.create(set_list=set_list, song=song, order=song_order)
+
+        return response_data
 
 
 class SetListList(TemplateView):

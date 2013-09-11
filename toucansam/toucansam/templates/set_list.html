@@ -95,9 +95,12 @@
     function save() {
         var song_rows  = $("#set_list tr.song");
         var gig_name = $("#gig_name").val();
-        if (gig_name == "") {
-            $("#gig_name_error").text("You need to enter a name to save this set list");
+        function show_error(msg) {
+            $("#gig_name_error").text(msg);
             $("#gig_name_error").show();
+        }
+        if (gig_name == "") {
+            show_error("You need to enter a name to save this set list");
         } else {
             $("#gig_name_error").hide();
             var data = {
@@ -106,12 +109,15 @@
             };
             $.each(song_rows, function (i, tr) {
                 data["songs"].push($(tr).data('id'));
-            })
-            $.post("{% url "core.views.set_list_ajax" set_list_id %}", data, function(resp){
-                if (resp != '') {
-                    window.location.href = resp;
-                }
             });
+            $.post("{% url "set_list_ajax" set_list_id %}", data, function(resp) {
+                    if (resp['error']) {
+                        show_error(resp['error']);
+                    } else if (resp['refresh']) {
+                        window.location.href = resp['refresh'];
+                    }
+                }
+            );
         }
     }
 

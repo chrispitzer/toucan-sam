@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from core.views import SetListView, CheatSheetView
+from core.views import SetListView, CheatSheetView, SetListAjax
 
 urlpatterns = patterns('',
     url(r'^$', 'core.views.home', name='home'),
@@ -10,5 +10,5 @@ urlpatterns = patterns('',
     url(r'^set_list_list/', 'core.views.set_list_list', name='set_list_list'),
     url(r'^cheat_sheet/(?P<set_list_id>\d+)/?$', CheatSheetView.as_view(), name="cheat_sheet"),
     url(r'^master_cheat_sheet/', CheatSheetView.as_view(), name="master_cheat_sheet"),
-    url(r'^api/save_set_list/(?P<set_list_id>\d+|new)/?$', 'core.views.set_list_ajax'),
+    url(r'^api/save_set_list/(?P<set_list_id>\d+|new)/?$', SetListAjax.as_view(), name="set_list_ajax"),
 )
