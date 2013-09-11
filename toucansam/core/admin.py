@@ -7,12 +7,18 @@ from .models import Song, SetList, Gig
 
 # show useful stuff...
 class SongAdmin(admin.ModelAdmin):
-    list_display = ('title', 'artist', 'key', 'singers')
+    list_display = ('title', 'artist', 'key', 'singers', 'active')
+    list_editable = ('singers', 'active')
+
+    def queryset(self, request):
+        return Song.all_objects.all()
 
     class Media:
         css = {
             "all": ("css/custom_admin.css",)
         }
+
+
 admin.site.register(Song, SongAdmin)
 admin.site.register(SetList)
 admin.site.register(Gig)

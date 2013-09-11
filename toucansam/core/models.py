@@ -1,6 +1,13 @@
 from django.db import models
 
 
+class ActiveSongsManager(models.Manager):
+    def get_query_set(self):
+        qs = super(ActiveSongsManager, self).get_query_set()
+        qs = qs.filter(active=True)
+        return qs
+
+
 class Song(models.Model):
     title = models.CharField(max_length=255, blank=True)
     artist = models.CharField(max_length=255, blank=True)
@@ -10,6 +17,10 @@ class Song(models.Model):
     cheat_sheet = models.CharField(max_length=255, blank=True)
     lyrics_with_chords = models.TextField(blank=True)
     video_link = models.URLField(max_length=255, blank=True)
+    active = models.BooleanField(default=True)
+
+    objects = ActiveSongsManager()
+    all_objects = models.Manager()
 
     def has_no_lyrics(self):
         return len(self.lyrics_with_chords) < 50
