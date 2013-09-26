@@ -1,4 +1,4 @@
-DEBUG = TEMPLATE_DEBUG = False
+DEBUG = TEMPLATE_DEBUG = True
 
 DATABASES = {
     'default': {
