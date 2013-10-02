@@ -123,12 +123,11 @@
 
 {% block content %}
 <h1 class="randocolor p1">Build you a set list!</h1>
-<p><a href="{% url "song_list" %}" class="btn btn-primary">the song list is over here</a></p>
 <p class="well">
     Drag items from the table on the left to the set list on the right. You can also drag-and-drop to
     reorder items in the setlist.<br/><br/>
     {% if set_list_id != "new" %}
-    <a href="{% url "cheat_sheet" set_list_id %}" target="_blank">Print a cheat sheet</a>
+    <a href="{% url "cheat_sheet" set_list_id %}" class="btn btn-info" target="_blank">Print a cheat sheet</a>
     {% endif %}
 </p>
 

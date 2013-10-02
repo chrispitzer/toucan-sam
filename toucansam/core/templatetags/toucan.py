@@ -15,3 +15,7 @@ CSS_COLORS = [
 @register.simple_tag()
 def randocolor():
     return random.choice(CSS_COLORS)
+
+@register.filter(name="range")
+def range_tpl(num):
+    return range(int(num))

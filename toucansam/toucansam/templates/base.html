@@ -25,15 +25,14 @@
             .randocolor {
                 background-color: {% randocolor %}
             }
-            .randocolor.p1 {
+            {% for i in 5|range %}
+            .randocolor.p{{ i }} {
                 background-color: {% randocolor %}
             }
-            .randocolor.p2 {
-                background-color: {% randocolor %}
+            .smaller {
+                font-size: smaller;
             }
-            .randocolor.p3 {
-                background-color: {% randocolor %}
-            }
+            {% endfor %}
         </style>
         {% block extra_css %}{% endblock %}
     </head>
@@ -43,15 +42,24 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <ul class="nav">
-                    <li class="active"><a href="{% url "home" %}">Home</a></li>
                     <li>
-                        <a href="{% url "song_list" %}">song catalog</a>
+                        <a href="{% url "song_list" %}">All the songs</a>
                     </li>
+                    <li>
+                        <a href="{% url "set_list_list" %}">All the set lists</a>
+                    </li>
+                    <li>
+                        <a href="{% url "set_list" "new" %}">A set list yet to exist...</a>
+                    </li>
+                    {% if user.is_staff %}
+                    <li class="smaller">
+                        <a href="{% url "admin:index" %}">edit shiz</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
         {% endblock %}
-
 
         <div class="container-fluid">
             {% block content %}{% endblock %}
