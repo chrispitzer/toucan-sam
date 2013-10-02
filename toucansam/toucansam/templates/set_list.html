@@ -7,6 +7,9 @@
         Build you a set list!
     {% endif %}
 {% endblock %}
+{% block extra_js %}
+    <script src="{{ STATIC_URL }}js/stupidtable.min.js"></script>
+{% endblock %}
 
 {% block extra_css %}
 <style type="text/css" media="screen">
@@ -17,7 +20,10 @@
         margin-bottom: 10px;
     }
     #song_list .set_list_only {
-        display:none;
+        display: none;
+    }
+    #song_list th {
+        cursor: pointer;
     }
     #set_list .catalog_only {
         display:none;
@@ -37,7 +43,6 @@
 {% endblock %}
 
 {% block extra_scripts %}
-
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/base/jquery-ui.css" type="text/css" media="all" />
 
@@ -71,6 +76,7 @@
                 update_empty_message();
             }
         }).disableSelection();
+        $("#song_list").stupidtable();
 
         $("#gig_name").change(function() {
             save();
@@ -137,11 +143,11 @@
         <table id="song_list" class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th class="set_list_only">Cheat Sheet</th>
-                    <th class="catalog_only">Artist</th>
-                    <th class="catalog_only">Key</th>
-                    <th class="catalog_only">Singers</th>
+                    <th data-sort="string-ins" data-sort="string-ins">Title</th>
+                    <th data-sort="string-ins" class="set_list_only">Cheat Sheet</th>
+                    <th data-sort="string-ins" class="catalog_only">Artist</th>
+                    <th data-sort="string-ins" class="catalog_only">Key</th>
+                    <th data-sort="string-ins" class="catalog_only">Singers</th>
                 </tr>
             </thead>
             <tbody>

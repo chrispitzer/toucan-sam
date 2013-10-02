@@ -25,6 +25,9 @@ class Song(models.Model):
     def has_no_lyrics(self):
         return len(self.lyrics_with_chords) < 50
 
+    class Meta:
+        ordering = ["title"]
+
 
 class Gig(models.Model):
     name = models.CharField(max_length=255)
