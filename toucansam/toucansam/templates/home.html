@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 
-
-
-
 {% block extra_css %}
 <style type="text/css" media="screen">
     body {
@@ -17,20 +14,15 @@
         padding-top: 15px;
         padding-bottom: 15px;
     }
-
 </style>
 {% endblock %}
 
-
-
-
 {% block page_title %}Have a very ukule-ly day{% endblock %}
 
-
-
-
 {% block content %}
+<p class="randocolor">
     this is the home page!!
     <br>
     there's not really any site here yet... except for our sweet <a href="{% url "song_list" %}">song catalog</a>!!
+</p>
 {% endblock %}

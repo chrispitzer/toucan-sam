@@ -1,12 +1,6 @@
 {% extends "base.html" %}
 
-
-
-
 {% block page_title %}Have a very ukule-ly day{% endblock %}
-
-
-
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.dataTables.css" type="text/css" media="screen" charset="utf-8">
@@ -16,9 +10,6 @@
     }
 </style>
 {% endblock %}
-
-
-
 
 {% block extra_scripts %}
 <script src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
@@ -33,12 +24,9 @@
 </script>
 {% endblock %}
 
-
-
-
 {% block content %}
 
-    <h1>EVERY TOUCAN SAM SONG EVER!!!</h1>
+    <h1 class="randocolor">EVERY TOUCAN SAM SONG EVER!!!</h1>
     <p><a href="{% url "set_list_list" %}" class="btn btn-primary">set list builder over here</a></p>
     <a href="{% url "master_cheat_sheet" %}" class="btn btn-info" target="_blank">Print the master cheat sheet</a>
     <table id="song_list" class="table">

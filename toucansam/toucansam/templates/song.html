@@ -1,29 +1,19 @@
 {% extends "base.html" %}
 
-
-
-
-{% block page_title %}Have a very ukule-ly day{% endblock %}
-
-
-
+{% block page_title %}{{ song.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ song.title }}</h1>
+    <h1 class="randocolor">{{ song.title }}</h1>
 
-    <h4>
+    <h4 class="randocolor p1">
         {% if song.artist %}
             by {{ song.artist }}
         {% endif %}
-
         -
-
         {% if song.singers %}
             sung by {{ song.singers }}
         {% endif %}
-
         -
-
         {% if song.video_link %}
             <a href="{{ song.video_link }}">
                 fruitorial
@@ -34,12 +24,8 @@
     </h4>
 
     {% if song.cheat_sheet %}
-        <h5>cheat sheet: {{ song.cheat_sheet }}</h5>
+        <h5 class="randocolor p2">cheat sheet: {{ song.cheat_sheet }}</h5>
     {% endif %}
 
-
-
     <pre>{{ song.lyrics_with_chords }}</pre>
-
-
 {% endblock %}
