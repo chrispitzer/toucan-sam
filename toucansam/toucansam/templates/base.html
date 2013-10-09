@@ -4,6 +4,7 @@
     <head>
         <title>{% block page_title %}{{ page_title }}{% endblock %}</title>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
         {% block extra_js %}{% endblock %}
 
@@ -74,5 +75,16 @@
         </div>
 
         {% block extra_scripts %}{% endblock %}
+        <script>
+            var colors = {{ CSS_COLORS|json_dump|safe }};
+            function update_colors() {
+                $(".randocolor").each(function(i, elem){
+                    var index = Math.floor(Math.random() * colors.length);
+                    var color = colors[index];
+                    $(elem).animate({backgroundColor: color});
+                });
+            }
+            window.setInterval(update_colors, 10000);
+        </script>
     </body>
 </html>

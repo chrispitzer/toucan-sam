@@ -21,6 +21,17 @@ DATABASES = {
     }
 }
 
+TOUCAN_COLORS = [
+    '#FFD700', #gold
+    '#FF00FF', #fuchsia
+    '#FF69B4', #hotpink
+    '#00FF00', #lime
+    '#FF4500', #orangered
+    '#FF0000', #red
+    '#A0522D', #sienna
+    '#9932CC' #darkorchid
+]
+
 import os
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -123,6 +134,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
+    "lib.context_processors.config",
 )
 
 

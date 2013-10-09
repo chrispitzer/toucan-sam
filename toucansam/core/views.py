@@ -1,10 +1,11 @@
 import json
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, View
 from core.models import Song, Gig, SetList, SetItem
+from core.templatetags.toucan import randocolor
 from lib.decorators import template
 
 from django.shortcuts import get_object_or_404
@@ -124,3 +125,8 @@ class CheatSheetView(TemplateView):
         halfway_point = len(songs)/2
         context['song_halves'] = [songs[:halfway_point], songs[halfway_point:]]
         return context
+
+class RandoColor(AjaxView):
+
+    def get(self, request):
+        return randocolor()
