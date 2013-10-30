@@ -58,8 +58,8 @@ gitdescr.close()
 
 MEDIA_ROOT = os.path.join(ROOT_DIR, 'media')
 MEDIA_URL = '/media/'
-STATIC_URL = '/static/%s/' % GIT_TAG
-STATIC_ROOT = os.path.join(ROOT_DIR, 'static_collected')
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/%s/admin/' % GIT_TAG
 
 # Additional locations of static files
