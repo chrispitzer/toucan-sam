@@ -1,1 +1,1 @@
-web: gunicorn toucansam.wsgi
+web: ./runserver.sh
