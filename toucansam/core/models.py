@@ -1,3 +1,4 @@
+from urlparse import urlparse, parse_qs
 from django.db import models
 
 
@@ -24,6 +25,18 @@ class Song(models.Model):
 
     def has_no_lyrics(self):
         return len(self.lyrics_with_chords) < 50
+
+    def youtube_video_id(self):
+        try:
+            parsed = urlparse(self.video_link)
+            if parsed.netloc.endswith('youtube.com'):
+                query = parse_qs(parsed.query)
+                return query.get('v', [None])[0]
+        except:
+            return None
+
+    def __unicode__(self):
+        return self.title
 
     class Meta:
         ordering = ["title"]

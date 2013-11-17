@@ -28,11 +28,12 @@
                 padding-bottom: 15px;
             }
             .randocolor {
-                background-color: {% randocolor %}
+                background-color: {% randocolor %};
+                padding: 10px;
             }
             {% for i in 5|range %}
             .randocolor.p{{ i }} {
-                background-color: {% randocolor %}
+                background-color: {% randocolor %};
             }
             .smaller {
                 font-size: smaller;

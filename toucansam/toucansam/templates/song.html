@@ -2,6 +2,15 @@
 
 {% block page_title %}{{ song.title }}{% endblock %}
 
+{% block extra_css %}
+<style type="text/css" media="screen">
+#embedded {
+    width: 100%;
+    text-align: center;
+}
+</style>
+{% endblock %}
+
 {% block content %}
     <h1 class="randocolor">{{ song.title }}</h1>
 
@@ -13,18 +22,23 @@
         {% if song.singers %}
             sung by {{ song.singers }}
         {% endif %}
-        -
         {% if song.video_link %}
+            -
             <a href="{{ song.video_link }}">
                 fruitorial
             </a>
-        {% else %}
-            no fruitorial
         {% endif %}
     </h4>
+    {% if song.youtube_video_id %}
+    <div id="embedded">
+        <iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/{{ song.youtube_video_id }}" allowfullscreen frameborder="0">
+        </iframe>
+    </div>
+    {% else %}
+    {% endif %}
 
     {% if song.cheat_sheet %}
-        <h5 class="randocolor p2">cheat sheet: {{ song.cheat_sheet }}</h5>
+        <h3 class="randocolor p2">cheat sheet: {{ song.cheat_sheet }}</h3>
     {% endif %}
 
     <pre>{{ song.lyrics_with_chords }}</pre>
