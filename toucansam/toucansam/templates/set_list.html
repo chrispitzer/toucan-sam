@@ -161,7 +161,9 @@
                 {% for song in songs %}
                     <tr data-id="{{ song.id }}" class="song">
                         <td>{{ song.title }}</td>
-                        <td class="set_list_only">{{ song.cheat_sheet }}</td>
+                        <td class="set_list_only">
+                            <a href="{% url "song" song.id %}">{{ song.cheat_sheet }}</a>
+                        </td>
                         <td class="catalog_only">{{ song.artist }}</td>
                         <td class="catalog_only">{{ song.key }}</td>
                         <td class="catalog_only">{{ song.singers }}</td>
@@ -202,7 +204,11 @@
                     {% for song in set_list.ordered_songs %}
                         <tr data-id="{{ song.id }}" class="song">
                             <td>{{ song.title }}</td>
-                            <td class="set_list_only">{{ song.cheat_sheet }}</td>
+                            <td class="set_list_only">
+                                <a href="{% url "song" song.id %}">
+                                    {{ song.cheat_sheet }}
+                                </a>
+                            </td>
                             <td class="catalog_only">{{ song.artist }}</td>
                             <td class="catalog_only">{{ song.key }}</td>
                             <td class="catalog_only">{{ song.singers }}</td>
