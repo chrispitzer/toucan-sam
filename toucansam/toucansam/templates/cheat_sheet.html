@@ -2,14 +2,15 @@
 <head>
 <style>
     table {
-        width: 50%;
+        width: {{ column_width }}%;
         float: left;
+        padding: 0 10px;
     }
 </style>
 </head>
 <body>
 <table>
-{% for songs in song_halves %}
+{% for songs in song_columns %}
     {% for song in songs %}
         <tr>
         <td>{{ song.title }}</td>

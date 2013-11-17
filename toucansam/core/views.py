@@ -122,9 +122,23 @@ class CheatSheetView(TemplateView):
             songs = set_list.ordered_songs
         else:
             songs = Song.objects.order_by('title')
-        halfway_point = len(songs)/2
-        context['song_halves'] = [songs[:halfway_point], songs[halfway_point:]]
+        column_count = int(self.request.GET.get('columns', 2))
+        row_count = len(songs) / column_count
+        remainder = len(songs) % column_count
+        columns = []
+        start = 0
+        for i in range(column_count):
+            end = start + row_count
+            if remainder > 0:
+                end += 1
+                remainder -= 1
+            columns.append(songs[start:end])
+            start = end
+
+        context['column_width'] = (1./column_count) * 100
+        context['song_columns'] = columns
         return context
+
 
 class RandoColor(AjaxView):
 
