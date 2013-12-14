@@ -106,9 +106,8 @@ set_list_list = SetListList.as_view()
 
 @template("song.html")
 def song(request, song_id):
-    song = get_object_or_404(Song, id=song_id)
     return {
-        "song": song,
+        "song": get_object_or_404(Song.all_objects, id=song_id),
     }
 
 

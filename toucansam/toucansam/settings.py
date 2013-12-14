@@ -114,7 +114,6 @@ INSTALLED_APPS = (
     'south',
     'toucansam',
     'core',
-    # Uncomment the next line to enable the admin:
     'grappelli',
     'django.contrib.admin',
 )

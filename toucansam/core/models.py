@@ -1,4 +1,5 @@
 from urlparse import urlparse, parse_qs
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
@@ -37,6 +38,9 @@ class Song(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('song', args=[self.id])
 
     class Meta:
         ordering = ["title"]

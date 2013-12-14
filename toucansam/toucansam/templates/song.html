@@ -11,6 +11,16 @@
 </style>
 {% endblock %}
 
+{% block extra_nav_list_items %}
+    <li class="smaller">
+        <a href="{% url "admin:core_song_change" song.id %}">
+            {% if user.is_staff %}
+                edit this
+            {% endif %}
+        </a>
+    </li>
+{% endblock %}
+
 {% block content %}
     <h1 class="randocolor">{{ song.title }}</h1>
 
