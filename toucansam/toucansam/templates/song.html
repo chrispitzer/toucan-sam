@@ -8,8 +8,37 @@
     width: 100%;
     text-align: center;
 }
+
+#cheatsheet {
+    width: 100%;
+    height: 60px;
+}
+#cheatsheet-inner {
+    width: 100%;
+}
+#cheatsheet h3 {
+    margin: 0;
+}
+
+.scrolling {
+    position: fixed;
+    top: 51px;
+}
+
 </style>
 {% endblock %}
+
+{% block extra_scripts %}
+<script>
+$(function(){
+    $(window).scroll(function(){
+      $('#cheatsheet-inner').toggleClass('scrolling', $(window).scrollTop() + 51 > $('#cheatsheet').offset().top);
+        $('#cheatsheet-inner h3').width($('#lyrics').width());
+    });
+});
+</script>
+{% endblock %}
+
 
 {% block extra_nav_list_items %}
     <li class="smaller">
@@ -19,6 +48,10 @@
             {% endif %}
         </a>
     </li>
+{% endblock %}
+
+{% block navbar %}
+    {{ block.super }}
 {% endblock %}
 
 {% block content %}
@@ -48,8 +81,12 @@
     {% endif %}
 
     {% if song.cheat_sheet %}
-        <h3 class="randocolor p2">cheat sheet: {{ song.cheat_sheet }}</h3>
+        <div id="cheatsheet">
+            <div id="cheatsheet-inner" >
+                <h3 class="randocolor p2">cheat sheet: {{ song.cheat_sheet }}</h3>
+            </div>
+        </div>
     {% endif %}
 
-    <pre>{{ song.lyrics_with_chords }}</pre>
+    <pre id="lyrics">{{ song.lyrics_with_chords }}</pre>
 {% endblock %}
