@@ -6,8 +6,8 @@ from .models import Song, SetList, Gig
 
 # show useful stuff...
 class SongAdmin(admin.ModelAdmin):
-    list_display = ('title', 'artist', 'key', 'singers', 'active')
-    list_editable = ('singers', 'active')
+    list_display = ('title', 'artist', 'key', 'singers', 'running_seconds', 'active')
+    list_editable = ('singers', 'running_seconds', 'active')
 
     class Media:
         css = {
