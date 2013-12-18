@@ -1,4 +1,4 @@
-from datetime import time
+from datetime import time, timedelta
 import json
 import random
 from django.conf import settings
@@ -17,17 +17,18 @@ def json_dump(data):
     return json.dumps(data)
 
 @register.filter
-def format_seconds(seconds):
+def format_seconds(data):
+    if not isinstance(data, timedelta):
+        return data
+    # truncate hours if zero, then minute if zero
     try:
-        seconds = int(seconds)
+        seconds = data.seconds
     except:
         return seconds
     hours = seconds / (60*60)
     seconds %= 60 * 60
     minutes = seconds / 60
     seconds %= 60
-
-    # truncate hours if zero, then minute if zero
     timelist = [hours, minutes, seconds]
     while timelist[0] == 0 and len(timelist) > 1:
         timelist = timelist[1:]
