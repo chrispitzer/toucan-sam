@@ -9,9 +9,6 @@ class SongAdmin(admin.ModelAdmin):
     list_display = ('title', 'artist', 'key', 'singers', 'active')
     list_editable = ('singers', 'active')
 
-    def queryset(self, request):
-        return Song.all_objects.all()
-
     class Media:
         css = {
             "all": ("css/custom_admin.css",)

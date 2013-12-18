@@ -21,8 +21,8 @@ class Song(models.Model):
     video_link = models.URLField(max_length=255, blank=True)
     active = models.BooleanField(default=True)
 
-    objects = ActiveSongsManager()
-    all_objects = models.Manager()
+    objects = models.Manager()
+    active_objects = ActiveSongsManager()
 
     def has_no_lyrics(self):
         return len(self.lyrics_with_chords) < 50

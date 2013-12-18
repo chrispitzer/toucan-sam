@@ -17,7 +17,7 @@ def home(request):
 
 @template("song_list.html")
 def song_list(request):
-    songs = Song.objects.all()
+    songs = Song.active_objects.all()
     return {
         "songs": songs,
         "set_list_id": "new",
@@ -34,7 +34,7 @@ class SetListView(TemplateView):
         else:
             set_list = get_object_or_404(SetList, id=set_list_id)
         context.update({
-            "songs": Song.objects.exclude(set_lists=set_list),
+            "songs": Song.active_objects.exclude(set_lists=set_list),
             "set_list_id": set_list_id,
             "set_list": set_list
         })
@@ -107,7 +107,7 @@ set_list_list = SetListList.as_view()
 @template("song.html")
 def song(request, song_id):
     return {
-        "song": get_object_or_404(Song.all_objects, id=song_id),
+        "song": get_object_or_404(Song, id=song_id),
     }
 
 
@@ -120,7 +120,7 @@ class CheatSheetView(TemplateView):
             set_list = get_object_or_404(SetList, id=set_list_id)
             songs = set_list.ordered_songs
         else:
-            songs = Song.objects.order_by('title')
+            songs = Song.active_objects.order_by('title')
         column_count = int(self.request.GET.get('columns', 2))
         row_count = len(songs) / column_count
         remainder = len(songs) % column_count
