@@ -1,0 +1,372 @@
+Running `python toucansam/manage.py dumpdata core --indent=2` attached to terminal... up, run.6625
+fatal: Not a git repository (or any of the parent directories): .git
+No local settings found, or it errored
+[
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Intro: riff on C\r\n\r\nVerse: C\u2014G\r\nWell the kids are all hopped up and ready to go\r\nThey're ready to go now they got their surfboards\r\nAnd they're headed for the discotheque Au Go Go\r\n\r\nVerse part 2: Am\u2014F (2x) C\u2014G\r\nBut she just couldn't stay she had to break away\r\nWell New York City really got it all oh yeah,\r\noh yeah\r\n\r\nChorus: C\u2014F\u2014G\r\nSheena is a punk rocker\r\nSheena is a punk rocker\r\nSheena is a punk rocker now  (repeat)\r\n\r\nBridge: F\u2014C\u2014G\u2014Bb\r\nWell she's a punk punk, a punk rocker\r\nPunk punk a punk rocker\r\nPunk punk a punk rocker\r\nPunk punk a punk rocker\r\n\r\n-----\r\n\r\nC-G-F-G-F-G\r\nJackie is a punk\r\nJudy is a runt\r\nThey both went down to Berlin, joined the Ice Capades\r\nAnd oh, I don't know why\r\nOh, I don't know why\r\n\r\nC-G\r\nPerhaps they'll die, oh yeah [x4]\r\n\r\nSecond verse same as the first! (start over)\r\n\r\nC-G\r\nOOOooooooo [x4\r\n\r\nThird verse different from the first! (start over)\r\n...went down to Frisco, joined the SLA...", 
+    "singers": "Chris, Nick", 
+    "active": true, 
+    "title": "Sheena / Judy", 
+    "artist": "The Ramones", 
+    "key": "C", 
+    "video_link": "http://www.youtube.com/watch?v=viiYCcxPUsE", 
+    "cheat_sheet": "riff C / C G x2, Am F x2 C G / C F G (Bb)"
+  }, 
+  "pk": 1
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "C                                   Am\r\nIf you're gonna scream, scream with me\r\n                        F    C#   C\r\nMoments like this never last\r\nC                           Am\r\nWhen do creatures rape your face\r\n                      F    C#   C\r\nHybrids opened up the door\r\n\r\nAm        G\r\nOoh baby when you cry\r\n             F\r\nYour face is momentary\r\nC             G                  F   G\r\nYou hide your looks behind these sca-ars\r\n\r\nC\r\nIn hybrid moments\r\nAm               F   C#   C\r\nIn hybrid moments\r\nC\r\nGive me a moment\r\nAm               F   C#   C\r\nGive me a moment\r\n\r\nOoh baby when you cry\r\nYour face is momentary\r\nYou hide your looks behind these sca-ars\r\n\r\nIn hybrid moments\r\nIn hybrid moments\r\n\r\nIn hybrid moments\r\nGive me a moment\r\n\r\nGive me a moment\r\nGive me a moment", 
+    "singers": "Chris, Nick", 
+    "active": true, 
+    "title": "Hybrid Moments", 
+    "artist": "The Misfits", 
+    "key": "C", 
+    "video_link": "https://www.youtube.com/watch?v=4OLsxwu4b2Y", 
+    "cheat_sheet": "C Am F C# C / Am G F, C G F G / end F G C "
+  }, 
+  "pk": 2
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "  Intro: F (hold)\r\n  F\u2014A\u2014Bb (x 3\r\n  F (hold)\r\n\r\n  Verse: F\u2014A\u2014Bb\u2014G\r\nCease to resist, giving my goodbye\r\ndrive my car into the ocean\r\nyou'll think i'm dead, but i sail away\r\n\r\n  Chorus: F\u2014A\u2014Bb\r\non a wave of mutilation\r\nwave of mutilation\r\nwave of mutilation\r\n\r\n  Wavey bits: F Bb\r\na wave\r\nwave\r\n\r\ni've kissed mermaids, rode the el nino\r\nwalked the sand with the crustaceans\r\ncould find my way to mariana\r\n\r\n  Chorus\r\n\r\n  ROCK OUT ON F!\r\n\r\n  Wavey bits\r\n\r\n  Chorus\r\n\r\n  ROCK OUT ON F AGAIN!", 
+    "singers": "Heather, Chris", 
+    "active": true, 
+    "title": "Wave of Mutilation", 
+    "artist": "The Pixies", 
+    "key": "F", 
+    "video_link": "https://www.youtube.com/watch?v=G1hNYOvzCx8", 
+    "cheat_sheet": "F A Bb / F A Bb G"
+  }, 
+  "pk": 3
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Start with four measures of F\r\n\r\n  Verse: F Bb\r\nWhat I want you've got\r\nAnd it might be hard to handle\r\nLike the flame that burns the candle\r\nThe candle feeds the flame\r\n\r\nWhat I've got's full stock\r\nOf thoughts and dreams that scatter\r\nYou pull them all together\r\nAnd how I can't explain\r\n\r\n\r\n  Chorus: Gm C F Bb C F/\r\nWell, well you\r\nYou make my dreams come true\r\nWell, well, well you (Oooh \u2013ooh!)\r\nYou make my dreams come true\r\n\r\n\r\nOn a night when bad dreams\r\nBecome a screamer\r\nWhen they're messin' with the dreamer\r\nI can laugh it in the face\r\n\r\nTwist and shout my way out\r\nAnd wrap yourself around me\r\n'Cause I ain't the way you found me\r\nAnd I'll never be the same\r\n\r\n\r\nCHORUS\r\n...Listen to this\r\n\r\nBridge: Bb F C (x2) Bb Gm C\r\nI'm down on my daydream\r\nOh, that sleepwalk should be\r\nOver by now, I know\r\n\r\n\r\nCHORUS", 
+    "singers": "Jeff, Heather", 
+    "active": true, 
+    "title": "Dreams Come True", 
+    "artist": "Hall and Oates", 
+    "key": "F", 
+    "video_link": "https://www.youtube.com/watch?v=doPvoMsDbhc", 
+    "cheat_sheet": "F / F Bb / Gm C F Bb C F / Bb F C / Bb Gm C"
+  }, 
+  "pk": 4
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "READY??? READYYY\r\n\r\nEntire Song: C\u2014F\u2014G\u2014C \r\nTake out the papers and the trash\r\nOr you don't get no spendin' cash\r\nIf you don't scrub that kitchen floor\r\nYou ain't gonna rock and roll no more\r\nYakety yak (don't talk back)\r\n\r\nJust finish cleanin' up your room\r\nLet's see that dust fly with that broom\r\nGet all that garbage out of sight\r\nOr you don't go out Friday night\r\nYakety yak (don't talk back)\r\n\r\nKAZOO SOLO\r\n\r\nYou just put on your coat and hat\r\nAnd walk yourself to the laundromat\r\nAnd when you finish doin' that\r\nBring in the dog and put out the cat\r\nYakety yak (don't talk back)\r\n\r\nDon't you give me no dirty looks\r\nYour father's hip; he knows what cooks\r\nJust tell your hoodlum friend outside\r\nYou ain't got time to take a ride\r\nYakety yak (don't talk back)\r\n\r\nKAZOO SOLO, \r\nYakety yak (don't talk back)\r\nYakety yak, yakety yak\r\nYakety yak, yakety yak\r\nYakety yak, yakety yak\r\nYakety yak, yakety yak \r\n(gets quiet, do our spiel, then loud again)", 
+    "singers": "Jeff, Heather", 
+    "active": true, 
+    "title": "Yakety Yak", 
+    "artist": "The Coasters", 
+    "key": "C", 
+    "video_link": "https://www.youtube.com/watch?v=w_SWuF25cwA", 
+    "cheat_sheet": "C F G C"
+  }, 
+  "pk": 5
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "C\r\nAre teenage dreams so hard to beat\r\nAm\r\nEverytime she walks down the street\r\nC\r\nAnother girl in the neighbourhood\r\nAm\r\nWish she was mine, she looks so good\r\n\r\n  Chorus:\r\nF\r\nI wanna hold her, wanna hold her tight\r\nG\r\nGet teenage kicks right through the night (Come on!)\r\n\r\n\r\nI'm gonna call her on the telephone\r\nHave her over 'cause I'm all alone\r\nI need excitement oh I need it bad\r\nAnd it's the best thing I've ever had\r\n\r\n\r\nCHORUS x2\r\n\r\n(Go into Some Kinda Hate)", 
+    "singers": "Chris, Nick", 
+    "active": true, 
+    "title": "Teenage Kicks", 
+    "artist": "The Undertones", 
+    "key": "C", 
+    "video_link": "http://www.youtube.com/watch?v=EBBM4-3LS18", 
+    "cheat_sheet": "C Am C Am / F G"
+  }, 
+  "pk": 6
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Verse: C\u2014Dm\r\nChorus: Em\u2014Dm (3x)  F\u2014G\r\n\r\nPolice and thieves in the streets Oh yeah!\r\nScaring the nation with their guns and ammunition\r\nPolice and thieves in the street Oh yeah!\r\nFighting the nation with their guns and ammunition\r\n\r\nFrom Genesis to Revelation\r\nThe next generation will be hear me\r\nFrom Genesis to Revelation\r\nThe next generation will be hear me\r\n\r\nAnd all the crimes committed day by day\r\nNo one stop it oh anyway\r\nAnd all the peacemakers turn war officers\r\nHear what I say\r\nHey-ey-ey-ey-ey-ey-ey\r\n\r\nPolice, police, police and thieves oh yeah\r\nPolice, police, police and thieves oh yeah\r\nFrom Genesis oh yeah\r\nPolice, police, police and thieves oh yeah\r\n\r\n(REPEAT WHOLE THING)\r\n\r\nDoi-dop x4 dop dop da da\r\nDoi-dop x4 dop dop da da\r\nOH YEAH\r\nDoi-dop x4 dop dop da da\r\nDoi-dop x4 dop dop da da\r\nOH YEAH\r\n", 
+    "singers": "Chris, Nick", 
+    "active": true, 
+    "title": "Police and Thieves", 
+    "artist": "Junior Murvin / The Clash", 
+    "key": "C", 
+    "video_link": "https://www.youtube.com/watch?v=u324pVDTaGc", 
+    "cheat_sheet": "C Dm / Em Dm / F G"
+  }, 
+  "pk": 8
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Chorus:\r\n[G]He's in love with rock 'n' roll whoa\r\nHe's in love with gettin' stoned whoa\r\nHe's in love with Janie Jones whoa\r\nBut he don't like his boring job, no\r\nX2\r\n\r\nVerse 1:\r\n[C]And he knows what he's got to do\r\nHe knows he's gotta have fun with [G]you You lucky lady!\r\n[C]And he knows when the evening comes\r\nWhen his job is done he'll be over in his car for [D]you\r\n\r\nChorus\r\n[G]He's in love with rock 'n' roll whoa\r\nHe's in love with gettin' stoned whoa\r\nHe's in love with Janie Jones whoa\r\nBut he don't like his boring job, no\r\nX2\r\n\r\nVerse 2:\r\n[C]And in the in-tray lots of work\r\nBut the boss at the firm always thinks he [G]shirks\r\n[C]But he's just like everyone\r\nHe's got a Ford Cortina that just won't run without [D]fuel\r\nFill 'er up, Jacko!\r\n\r\nChorus\r\n[G]He's in love with rock 'n' roll whoa\r\nHe's in love with gettin' stoned whoa\r\nHe's in love with Janie Jones whoa\r\nBut he don't like his boring job, no\r\nX2\r\n\r\nVerse 3:\r\n[C]And the invoice, it don't quite fit\r\nThere's no payola in his alphabetical [G]file\r\n'Cept for the government, man!\r\n[C]This time he's gonna really tell the boss\r\nHe's gonna really let him know exactly how he [D]feels\r\nIt's pretty bad!\r\n\r\nChorus:\r\n[G]He's in love with rock 'n' roll whoa\r\nHe's in love with gettin' stoned whoa\r\nHe's in love with Janie Jones whoa\r\nBut he don't like his boring job, no\r\nX2", 
+    "singers": "Nick", 
+    "active": true, 
+    "title": "Janie Jones", 
+    "artist": "The Clash", 
+    "key": "G", 
+    "video_link": "https://www.youtube.com/watch?v=YSicknuKUvs", 
+    "cheat_sheet": "G / C G C D"
+  }, 
+  "pk": 9
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "C\r\nI know things are gettin tough when you\r\nBb                       F\r\ncant get the top off the bottom of the barrel.\r\nC\r\nWide open road of my future\r\nBb      F\r\nnow its lookin fuckin narrow.\r\n\r\n  Chorus:\r\nC\r\nAll i know is that i dont know\r\nBb                   F\r\nAll i know is that i dont know nothin.\r\nC\r\nAll i know is that i dont know\r\nBb                   F\r\nAll i know is that i dont know nothin.\r\n\r\n\r\nWe're gettin\r\ntaught to decide\r\njust like as if\r\ni'm not gonna change my mind\r\n\r\nCHORUS\r\nSOLO\r\n\r\nC\r\nWhat you gonna do with yourself\r\nBb                    F\r\nBoy better make up your mind.\r\nC\r\nWhat you gonna do with yourself\r\n       Bb            F\r\nyou're runnin out of time.\r\n\r\nSOLO\r\nCHORUS (quiet, then louder) x2\r\nand that's fine!", 
+    "singers": "Nick", 
+    "active": true, 
+    "title": "Knowledge", 
+    "artist": "Operation Ivy", 
+    "key": "C", 
+    "video_link": "https://www.youtube.com/watch?v=bSJ2pNRA7dQ", 
+    "cheat_sheet": "C Bb F"
+  }, 
+  "pk": 10
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Verse: C\u2014F\u2014G (2x)\r\nChewin' at a rhythm on my bubble gum\r\nThe sun is out, I want some\r\nIt's not hard, not far to reach\r\nWe can hitch a ride to Rockaway Beach\r\n\r\nUp on the roof, out on the street\r\nDown in the playground the hot concrete\r\nBus ride is too slow\r\nThey blast out the disco on the radio\r\n\r\nChorus: C\u2014F\u2014C\u2014G (2x)\r\nRock Rock Rockaway Beach\r\nRock Rock Rockaway Beach\r\nRock Rock Rockaway Beach\r\nWe can hitch a ride to Rockaway Beach \r\n\r\n(repeat chorus)\r\n\r\nRiffage: F\u2014C\u2014Eb\u2014Bb \r\n\r\nBridge: Am\u2014C\u2014Am\u2014F\u2014G \r\nIt's not hard, not far to reach\r\nWe can hitch a ride to Rockaway Beach\r\n \r\nIt's not hard, not far to reach\r\nWe can hitch a ride to Rockaway Beach \r\n\r\n(repeat verses)\r\n\r\n(chorus once)\r\n\r\nRiffage: F\u2014C\u2014Eb\u2014Bb\r\n\r\n(chorus twice)\r\n\r\n(Ending: F\u2014C!)", 
+    "singers": "Chris, Nick", 
+    "active": true, 
+    "title": "Rockaway Beach", 
+    "artist": "The Ramones", 
+    "key": "C", 
+    "video_link": "https://www.youtube.com/watch?v=xoOd2pl2ksY", 
+    "cheat_sheet": "riff F / CFG / CFCG // F C Eb Bb / Am C Am F G / FC"
+  }, 
+  "pk": 11
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Intro: C F\r\n\r\nC\r\nBeat on the brat, beat on the brat Beat on the brat with a baseball bat\r\n    F        G         C\r\nOh yeah, oh yeah, oh\r\n\r\nBeat on the brat, beat on the brat Beat on the brat with a baseball bat\r\n    F        G         C     F        G         C\r\nOh yeah, oh yeah, oh      Oh yeah, oh yeah, oh\r\n\r\nChorus:\r\nBb  G  Bb  G            C\r\n           What can you do\r\nF             C\r\nWhat can you do\r\nF                 C\r\nWith a brat like that always on your back\r\n              Bb\r\nWhat can you lose\r\nG                  C\r\n      What can you do\r\nF             C\r\nWhat can you do\r\nF                      C\r\n     With a brat like that always on your back\r\n              Bb    G       Bb      G\r\nWhat can you lose          Lose\r\n\r\n\r\n(Play intro again: C  F)\r\n(repeat verse)\r\n(repeat chorus)\r\n(End with intro: C  F)", 
+    "singers": "Chris, Nick", 
+    "active": true, 
+    "title": "Beat On The Brat", 
+    "artist": "The Ramones", 
+    "key": "C", 
+    "video_link": "https://www.youtube.com/watch?v=4nNmg0stkGY", 
+    "cheat_sheet": "C F / C F G / Bb G / C F C F C Bb G"
+  }, 
+  "pk": 12
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Tequilla!\r\n\r\nTequilla!\r\n\r\nFruit Loops!", 
+    "singers": "", 
+    "active": true, 
+    "title": "Tequila", 
+    "artist": "", 
+    "key": "C", 
+    "video_link": "", 
+    "cheat_sheet": "C Bb / Eb C Eb C Eb C D G"
+  }, 
+  "pk": 16
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Em C7 B7\r\nEm\r\nFolks! Here's the story 'bout Minnie the Moocher\r\nC7                B7      Em\r\nshe was a red hot hoochie coocher\r\nEm\r\nshe was the roughest, toughest frail\r\nC7                             B7       Em\r\nbut Minnie had a heart just as big as a whale\r\n\r\nEm\r\n(Hi de hos)\r\n\r\nEm\r\nShe messed around with a bloke named Smokey\r\nC7                    B7     Em\r\nshe loved him, though he was coke-y\r\nEm\r\nhe took her down to Chinatown\r\nC7                                B7     Em\r\nand he showed her how to kick the gong a round\r\n\r\nEm\r\n(Hi de hos)\r\n\r\nEm\r\nShe had a dream about the King of Sweden\r\nC7                      B7      Em\r\nhe gave her things that she was needin'\r\nEm\r\ngave her a home built of gold and steel\r\nC7                      B7       Em\r\na diamond car, with the platinum wheels\r\n\r\nEm\r\n(Hi de hos)\r\n\r\nEm\r\nHe gave her a townhouse and his racing horses\r\nC7                      B7    Em\r\neach meal she ate was a dozen courses\r\nEm\r\nshe had a million dollars worth of nickels and dimes\r\nC7                                B7      Em\r\nshe sat around and counted them a million times\r\n\r\nEm       C7       B7   Em\r\nPoor Min Poor Min Poor Miiiiiiiiiiiiiiiiiiiiiiiiiiin\r\n", 
+    "singers": "Sabrina", 
+    "active": true, 
+    "title": "Minnie the Moocher", 
+    "artist": "Cab Calloway", 
+    "key": "", 
+    "video_link": "http://www.youtube.com/watch?v=BoQWJts5rTw", 
+    "cheat_sheet": "V: Em/B7/Em/C7/B7/Em C: Em O: Em/C7/B7/Em"
+  }, 
+  "pk": 17
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "I was watching\r\nWith one eye on the other side\r\nI had fifteen people telling me to move\r\nI've got moving on my mind\r\nI found shelter \r\nIn some thoughts turning wheels around \r\nI said 39 times that I love you \r\nTo the beauty I had found \r\n\r\nWell its 1 2 3 4 \r\nTake the elevator \r\nAt the Hotel Yorba \r\nI'll be glad to see you later \r\nAll they got inside is vacancy \r\n\r\nI been thinking \r\nOf a little place down by the lake \r\nThey got a dirty little road leading up to the house \r\nI wonder how long it will take till we're alone \r\nSitting on the front porch of that home \r\nStomping our feet on the wooden boards \r\nNever gotta worry about locking the door \r\n\r\nWell its 1 2 3 4 \r\nTake the elevator \r\nAt the Hotel Yorba \r\nI'll be glad to see you later \r\nAll they got inside is vacancy \r\n\r\nYou'll prob'ly say I'm silly \r\nFor thinking childish thoughts like these \r\nBut I'm so tired of acting tough\r\nAnd I'm gonna do as I please\r\nLet's get married \r\nIn a big cathedral by a priest \r\n'Cause if I'm the man you love the most \r\nYou can say i do at least \r\n\r\nWell its 1 2 3 4 \r\nTake the elevator \r\nAt the Hotel Yorba \r\nI'll be glad to see you later \r\nAll they got inside is vacancy \r\n\r\nAnd its 4 5 6 7 \r\nGrab your umbrella \r\nGrab hold of me \r\n'Cause I'm your favorite fella \r\nAll they got inside is vacancy \r\n", 
+    "singers": "Johnny", 
+    "active": true, 
+    "title": "Hotel Yorba", 
+    "artist": "White Stripes", 
+    "key": "G", 
+    "video_link": "http://www.youtube.com/watch?v=hwdlq4mD-Sk", 
+    "cheat_sheet": "G/C/D"
+  }, 
+  "pk": 18
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Uno, dos, \r\none, two, tres, quatro.\r\n\r\nMatty told Hatty about a thing she saw.\r\nHad two big horns and a wooly jaw.\r\nWooly bully, wooly bully.\r\nWooly bully, wooly bully, wooly bully.\r\n\r\nHatty told Matty: \"Let's don't take no chance.\r\nLet's not be *L-seven*, come and learn to dance.\"\r\nWooly bully, wooly bully.\r\nWooly bully, wooly bully, wooly bully.\r\n\r\nMatty told Hatty: \"That's the thing to do.\r\nGet you someone really to pull the wool with you.\"\r\nWooly bully, wooly bully.\r\nWooly bully, wooly bully, wooly bully.", 
+    "singers": "", 
+    "active": true, 
+    "title": "Wooly Bully", 
+    "artist": "Sam The Sham and the Pharaohs", 
+    "key": "C", 
+    "video_link": "http://www.youtube.com/watch?v=Ea55Gj7qEVs", 
+    "cheat_sheet": "C7 F C7 G7 F C7"
+  }, 
+  "pk": 19
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Your love, lifting me higher\r\nThan i've ever been lifted before\r\nSo keep it it up\r\nQuench my desire\r\nAnd i'll be at your side, forever more\r\n\r\n[Chorus]\r\nYou know your love (your love keeps lifting me)\r\nKeep on lifting (love keeps lifting me)\r\nHigher (lifting me)\r\nHigher and higher (higher)\r\nI said your love (your love keeps lifting me)\r\nKeep on (love keeps lifting me)\r\nLifting me (lifting me)\r\nHigher and higher (higher)\r\n\r\nNow once, I was down hearted\r\nDisappointment, was my closest friend\r\nBut then you, came and it soon departed\r\nAnd you know he never\r\nShowed his face again\r\n\r\n[Chorus]\r\n\r\nI'm so glad, i've finally found you\r\nYes that one, in a million girls\r\nAnd I whip, my loving arms around you\r\nI can stand up, and face the world\r\n\r\n[Chorus till fade] ", 
+    "singers": "Johnny", 
+    "active": true, 
+    "title": "Higher and Higher", 
+    "artist": "Jackie Wilson", 
+    "key": "C", 
+    "video_link": "", 
+    "cheat_sheet": "C F Dm C"
+  }, 
+  "pk": 22
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "You don't have to be beautiful to turn me on\r\nI just need your body, baby, from dusk till dawn\r\nYou don't need experience to turn me out\r\nYou just leave it all up to me, I'm gonna show you what it's all about\r\n\r\nCHORUS:\r\nYou don't have to be rich to be my girl\r\nYou don't have to be cool to rule my world\r\nAin't no particular sign I'm more compatible with\r\nI just want your extra time and your kiss\r\n\r\nYou got to not talk dirty, baby, if you wanna impress me\r\nYou can't be to flirty, mama, I know how to undress me, yeah\r\nI want to be your fantasy, maybe you could be mine\r\nYou just leave it all up to me, we could have a good time\r\n\r\nCHORUS\r\n\r\nWomen, not girls, rule my world, I said they rule my world\r\nAct your age, not your shoe size, maybe we could do the twirl\r\nYou don't have to watch Dynasty to have an attitude, uh\r\nYou just leave it all up to me, my love will be your food, yeah\r\n\r\nCHORUS\r\n", 
+    "singers": "Jeff", 
+    "active": true, 
+    "title": "Kiss", 
+    "artist": "Prince", 
+    "key": "", 
+    "video_link": "", 
+    "cheat_sheet": "V: D7/G/D7 C: E/D/E/D/E"
+  }, 
+  "pk": 23
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "I rode my bicycle past your window last night\r\nI roller skated to your door at daylight\r\nSometimes I think that you're avoiding me\r\nI'm okay alone but you've got something I need\r\n\r\nCHORUS:\r\nI've got a brand new pair of roller skates\r\nYou've got a brand new key\r\nI think that we should get together and try them on to see\r\nI've been looking around a while\r\nYou've got something for me\r\nI've got a brand new pair of roller skates\r\nYou've got a brand new key\r\n\r\nI ride my bike, I roller skate, don't drive no car\r\nDon't go too fast but I go pretty far\r\nFor someone who don't drive I've been all around the world\r\nSome people say I done alright for a girl\r\n\r\nI asked your mother if you were at home\r\nShe said yes, but you weren't alone\r\nSometimes I think that you're avoiding me\r\nI'm okay alone but you've got something I need\r\n\r\nCHORUS", 
+    "singers": "Jonna, Lana", 
+    "active": true, 
+    "title": "Brand New Key", 
+    "artist": "Melanie", 
+    "key": "", 
+    "video_link": "http://www.youtube.com/watch?v=nlYk_CO2Yoc", 
+    "cheat_sheet": "V: C/G7/C/F/G7 C: C/F/C/G7/C Tag (after 2nd verse): C/F/G7/C"
+  }, 
+  "pk": 25
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "         C\r\nThere's some kinda love\r\n            Am\r\nAnd there's some kinda hate\r\n    C\r\nThe maggots in the iron lung\r\n      Am\r\nWon't copulate\r\n\r\n           F              G\r\nAnd it's a woah oh oh oh oh\r\n           F              G\r\nAnd it's a woah oh oh oh oh\r\n           F              G\r\nAnd it's a woah oh oh oh oh\r\n       F                   G\r\nI said woah woah oh, oh oh oh\r\n\r\nC\r\nHear the cats cry\r\n       Am\r\nLittle tortured babies in pain\r\nC\r\nCracked necks by settled limbs\r\n        Am\r\nThey don't hesitate\r\n\r\n           F              G\r\nAnd it's a woah oh oh oh oh\r\n     F             G\r\nBaby woah oh oh oh oh\r\n           F              G\r\nAnd it's a woah oh oh oh oh\r\n       F             G\r\nI said woah, woah, oh\r\n\r\nBridge: C# / F#\r\n\r\n         C\r\nThere's some kinda love\r\n            Am\r\nAnd there's some kinda hate\r\n    C\r\nThe maggots in the iron lung\r\n      Am\r\nWon't copulate\r\n\r\n           F             G\r\nAnd it's a woah oh oh oh oh\r\n     F             G\r\nBaby woah oh oh oh oh\r\n     F             G\r\nBaby woah oh oh oh oh\r\n       F          G        C\r\nI said woah woah oh, woah oh\r\n", 
+    "singers": "Chris, Nick", 
+    "active": true, 
+    "title": "Some Kinda Hate", 
+    "artist": "The Misfits", 
+    "key": "C", 
+    "video_link": "http://www.youtube.com/watch?v=EBBM4-3LS18", 
+    "cheat_sheet": "C Am / F G (C# F#)"
+  }, 
+  "pk": 26
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Hey ho, let's go\r\nHey ho, let's go\r\n\r\n(1)\r\nThey're forming in a straight line\r\nThey're going through a tight wind\r\nThe kids are losing their minds\r\nThe Blitzkrieg Bop\r\n\r\n(2)\r\nThey're piling in the back seat\r\nThey're generating steam heat\r\nPulsating to the back beat\r\nThe Blitzkrieg Bop.\r\n\r\n(3)\r\nHey ho, let's go\r\nShoot 'em in the back now\r\nWhat they want, I don't know\r\nThey're all revved up and ready to go\r\n\r\n----\r\n\r\n(full song structure is as follows...)\r\n\r\nhey ho,\r\n1, 2, 3\r\n1, 2, 3\r\n1, 2\r\nhey ho\r\n", 
+    "singers": "Chris, Nick", 
+    "active": true, 
+    "title": "Blitzkrieg Bop", 
+    "artist": "Ramones", 
+    "key": "F", 
+    "video_link": "https://www.youtube.com/watch?v=K_kb9eai0JA", 
+    "cheat_sheet": "F Bb C / F Bb F / Bb F / Bb G Bb C"
+  }, 
+  "pk": 27
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "I can't seem to face up to the facts \r\nI'm tense and nervous and I can't relax \r\nI can't sleep 'cause my bed's on fire \r\nDon't touch me I'm a real live wire \r\n\r\nCHORUS:\r\nPsycho Killer \r\nQu'est Que C'est \r\nFa fa fa fa fa fa fa fa fa far better \r\nRun run run run run run run away \r\nx2\r\n\r\nYou start a conversation you can't even finish it. \r\nYou're talkin' a lot, but you're not sayin' anything. \r\nWhen I have nothing to say, my lips are sealed. \r\nSay something once, why say it again? \r\n\r\nCHORUS\r\n\r\nCe que j'ai fais, ce soir la \r\nCe qu'elle a dit, ce soir la \r\nRealisant mon espoir \r\nJe me lance, vers la gloire ... OK \r\nWe are vain and we are blind \r\nI hate people when they're not polite \r\n\r\nCHORUS", 
+    "singers": "Jonna", 
+    "active": true, 
+    "title": "Psycho Killer", 
+    "artist": "Talking Heads", 
+    "key": "", 
+    "video_link": "http://www.youtube.com/watch?v=FmmkhYq7raE", 
+    "cheat_sheet": "A... F / F G Am F G C / Bm C / A G"
+  }, 
+  "pk": 28
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "Intro:  F\r\n\r\nVerse:\r\nF\r\nEveryone's rockin and everyone's feelin alright (ALRIGHT)\r\nBb\t\t\t\t\t F\r\nOn a Wed evening there's sure gonna be a fight (BE A FIGHT)\r\nBb \t\t\t\t             C (pause)\r\nSomebody's gonna get their head (KICKED IN TONIGHT)\r\n\r\nVerse\r\n...FOR MORE...ON THE FLOOR...KICKED IN TONIGHT\r\n\r\nChorus:\r\nBb\r\nRip up the halls (RIP UP THE HALLS)\r\nF\r\nTear down the walls (TEAR DOWN THE WALLS)\r\nBb\t\t\t\t\t                                       C (pause)\r\nAll of us boys gonna be a big fight (AND THE WHOLE DANCE FLOOR'LL BE A DOGGONE SIGHT)\r\n\r\nVVCVVCV Tag", 
+    "singers": "Nick", 
+    "active": true, 
+    "title": "Somebody's Gonna Get Their Head Kicked In Tonight", 
+    "artist": "Fleetwood Mac", 
+    "key": "F", 
+    "video_link": "http://www.youtube.com/watch?v=23g-vPYb_Ro&feature=youtu.be", 
+    "cheat_sheet": "Intro: F V: F/Bb/F/Bb/C C: Bb/F/Bb/C"
+  }, 
+  "pk": 29
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "A\r\nPresident's bullet ridden body in the street\r\nG     C       A\r\nRide, Johnny, ride\r\nA\r\nKennedy's shattered head hits concrete\r\nG     C       A\r\nRide, Johnny, ride\r\nA\r\nJohnny's wife is floundering\r\nJohnny's wife is scared\r\nG     C       A\r\nRun, Jackie, run\r\nA\r\nTexas is an outrage when your husband is dead\r\nG\r\nTexas is an outrage when they pick up his head\r\nF                   G                      A\r\nTexas is the reason that the president's dead\r\nYa gotta suck, suck, Jackie, suck\r\n\r\nPresident's bullet ridden body in the street\r\nRide, Johnny, ride\r\nKennedys shattered head hits concrete\r\nRide, Johnny, ride\r\nTexas is an outrage when your husband is dead\r\nTexas is an outrage when they pick up his head\r\nTexas is the reason that the president's dead\r\nYa gotta suck, suck, Jackie, suck\r\n\r\nD            A    (continue D A for rest of song)\r\nArise Jackie-O\r\nJonathan F. Kennedy will \r\nrise and be shot down\r\nDirt's gonna be your desert\r\nMy cum'll be your life source\r\nAnd the only way to get it\r\nIs to suck\r\nOr fuck\r\nOr be poor and devoid, and masturbate me\r\nMasterbate me, then slurp it from your palms\r\nLike a dry desert soakin' up the rain, soakin' up the sun\r\nLike a dry desert soakin' up the rain, soakin' up the sun", 
+    "singers": "Nick", 
+    "active": true, 
+    "title": "Bullet", 
+    "artist": "Misfits", 
+    "key": "C", 
+    "video_link": "http://www.youtube.com/watch?v=FmmkhYq7raE", 
+    "cheat_sheet": "A G C A /  A G F G A / D A"
+  }, 
+  "pk": 31
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "I come home in the morning light\r\nMy mother says when you gonna live your life right\r\nOh mother dear we're not the fortunate ones\r\nAnd girls they want to have fun\r\nOh girls just want to have fun\r\n\r\nThe phone rings in the middle of the night\r\nMy father yells what you gonna do with your life\r\nOh daddy dear you know you're still number one\r\nBut girls just want to have fun\r\nOh girls just want to have fun\r\n\r\nCHORUS:\r\nThat's all they really want\r\nIs some fun\r\nWhen the working day is done\r\nOh girls they want to have fun\r\nOh girls just want to have fun\r\n\r\nSome boys take a beautiful girl\r\nAnd hide her away from the rest of the world\r\nI want to be the one to walk in the sun\r\nOh girls just want to have fun\r\nOh girls just want to have fun\r\n\r\nCHORUS\r\n\r\nThey just wanna, they just wanna\r\n(Girls they wanna have fun)\r\nThey just wanna, they just wanna\r\n(Girls they wanna have fun)\r\nx4", 
+    "singers": "Jonna", 
+    "active": true, 
+    "title": "Girls Just Want to Have Fun", 
+    "artist": "Cyndi Lauper", 
+    "key": "G", 
+    "video_link": "http://www.youtube.com/watch?v=9xGuo-892rM", 
+    "cheat_sheet": "riff G / V: G Em7 C Em7 D C Em7 D G / C:  G Em7 G Em7 D C Em7 D G / G Em7"
+  }, 
+  "pk": 32
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "You shake my nerves and you rattle my brain\r\nToo much love drives a man insane\r\nYou broke my will, oh what a thrill\r\nGoodness gracious great balls of fire\r\n\r\nI laughed at love 'cause I thought it was funny\r\nBut you came alone and moved me, honey\r\nI changed my mind, this love is fine\r\nGoodness gracious great balls of fire\r\n\r\nCHORUS:\r\nKiss me baby\r\nWoo feels good\r\nHold me baby\r\nLearn to let me love you like a lover should\r\nYou're fine, so kind\r\nWant to tell this world that you're mine, mine, mine, mine\r\n\r\nI chew my nails and I twiddle my thumbs\r\nI'm real nervous but it sure is fun\r\nC'mon baby, you drive me crazy\r\nGoodness gracious great balls of fire\r\n\r\nSOLO\r\n\r\nCHORUS\r\n\r\nI chew my nails and I twiddle my thumbs\r\nI'm real nervous but it sure is fun\r\nC'mon baby, you drive me crazy\r\nGoodness gracious great balls of fire", 
+    "singers": "Sean", 
+    "active": true, 
+    "title": "Great Balls of Fire", 
+    "artist": "Jerry Lee Lewis", 
+    "key": "C", 
+    "video_link": "http://www.youtube.com/watch?v=cWWS32S0ZcM", 
+    "cheat_sheet": "V: C F7 G7 F7 C / C: F7 C F7 G"
+  }, 
+  "pk": 33
+},
+{
+  "model": "core.song", 
+  "fields": {
+    "lyrics_with_chords": "CHORUS:\r\nBad Kids\r\nAll my friends are bad kids\r\nProduct of no dad kids\r\nKids like you and me\r\nBad Kids\r\nAin't no college grad kids\r\nLivin' out on the skids\r\nKids like you and me\r\n\r\n(In class) We are the minority\r\n(Got no) Respect for authority\r\n(And won't) Play well with others\r\n(And steal) From all your mothers\r\n(They'll try) To give us pills\r\n(Oh wait) Give us all the pills\r\n(Go cry) Mom has to go to court\r\n(Dad won't) Pay his child support\r\n\r\nWell, you gotta understand\r\nWe only do these things because\r\nchorus...\r\n\r\n(At home) He throws a hissy fit\r\n(Time out) He don't give a shit\r\n(Got drunk) Off all of grandma's schnapps\r\n(Got caught) Runnin' from the cops\r\n(Toilet) Paper in your yard\r\n(Six Fs) On his report card\r\n(Smoke cigs) In the bathroom stall\r\n(Spray paint) A penis on the wall\r\n\r\nWell, you gotta understand\r\nWe only do these things because,\r\nchorus...", 
+    "singers": "Sean", 
+    "active": true, 
+    "title": "Bad Kids", 
+    "artist": "The Black Lips", 
+    "key": "C", 
+    "video_link": "http://www.youtube.com/watch?v=r-qKq0zewgg", 
+    "cheat_sheet": "C Am F G"
+  }, 
+  "pk": 34
+},
+{
+  "model": "core.song", 
+  "fields": {
+    
