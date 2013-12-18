@@ -58,7 +58,7 @@
                         <a href="{% url "set_list" "new" %}">A set list yet to exist...</a>
                     </li>
                     <li class="smaller">
-                        <a href="{% url "admin:index" %}">
+                        <a href="{% url "admin:core_song_changelist" %}">
                             {% if user.is_anonymous %}
                                 login fo edits
                             {% elif user.is_staff %}
