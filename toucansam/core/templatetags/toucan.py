@@ -15,31 +15,3 @@ def range_tpl(num):
 @register.filter
 def json_dump(data):
     return json.dumps(data)
-
-@register.filter
-def format_seconds(data):
-    if not isinstance(data, timedelta):
-        return data
-    # truncate hours if zero, then minute if zero
-    try:
-        seconds = data.seconds
-    except:
-        return seconds
-    hours = seconds / (60*60)
-    seconds %= 60 * 60
-    minutes = seconds / 60
-    seconds %= 60
-    timelist = [hours, minutes, seconds]
-    while timelist[0] == 0 and len(timelist) > 1:
-        timelist = timelist[1:]
-
-    #turn ints to strings -- everything but the first one gets leading zeroes
-    timestrings = []
-    for t in timelist:
-        if t == timelist[0]:
-            t = str(t)
-        else:
-            t = format(t, '02d')
-        timestrings.append(t)
-
-    return ":".join(timestrings)

@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, View
 from core.models import Song, Gig, SetList, SetItem
-from core.templatetags.toucan import randocolor, format_seconds
+from core.templatetags.toucan import randocolor
 from lib.decorators import template
 
 from django.shortcuts import get_object_or_404
