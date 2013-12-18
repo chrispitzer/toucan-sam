@@ -117,6 +117,7 @@
                 data["songs"].push($(tr).data('id'));
             });
             $.post("{% url "set_list_ajax" set_list_id %}", data, function(resp) {
+                    resp = JSON.parse(resp);
                     if (resp['error']) {
                         show_error(resp['error']);
                     } else if (resp['refresh']) {
