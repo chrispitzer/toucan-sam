@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, View
 from core.models import Song, Gig, SetList, SetItem
-from core.templatetags.toucan import randocolor
+from core.templatetags.toucan import randocolor, format_seconds
 from lib.decorators import template
 
 from django.shortcuts import get_object_or_404
@@ -70,7 +70,7 @@ class SetListAjax(AjaxView):
 
     def post(self, request, set_list_id):
         gig_name = request.POST["gig_name"]
-        response_data = ''
+        response_data = '{}'
 
         if set_list_id == "new":
             if SetList.objects.filter(gig__name=gig_name).exists():
@@ -92,6 +92,17 @@ class SetListAjax(AjaxView):
             SetItem.objects.create(set_list=set_list, song=song, order=song_order)
 
         return response_data
+
+
+class SetListSecondsjaxView(AjaxView):
+    def get(self, request, set_list_id):
+        if set_list_id == "new":
+            return "0:00"
+        else:
+            set_list = get_object_or_404(SetList, id=set_list_id)
+
+        return format_seconds(set_list.running_seconds)
+
 
 
 class SetListList(TemplateView):

@@ -122,6 +122,11 @@
                         show_error(resp['error']);
                     } else if (resp['refresh']) {
                         window.location.href = resp['refresh'];
+                    } else {
+                        // update runtime
+                        $.get("{% url "set_list_time" set_list_id %}", function(data) {
+                            $("#runtime").text(data);
+                        });
                     }
                 }
             );
@@ -149,12 +154,14 @@
                     <th data-sort="string-ins" class="catalog_only">Artist</th>
                     <th data-sort="string-ins" class="catalog_only">Key</th>
                     <th data-sort="string-ins" class="catalog_only">Singers</th>
+                    <th data-sort="string-ins" class="catalog_only">Runing Time</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="ui-state-disabled">
                     <td>(no songs)</td>
                     <td class="set_list_only"></td>
+                    <td class="catalog_only"></td>
                     <td class="catalog_only"></td>
                     <td class="catalog_only"></td>
                     <td class="catalog_only"></td>
@@ -168,6 +175,7 @@
                         <td class="catalog_only">{{ song.artist }}</td>
                         <td class="catalog_only">{{ song.key }}</td>
                         <td class="catalog_only">{{ song.singers }}</td>
+                        <td class="catalog_only">{{ song.running_seconds|format_seconds }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -187,6 +195,7 @@
                 <label for="gig_name">Gig Name:</label>
                 <input type="text" name="gig_name" id="gig_name" value="{{ set_list.gig.name }}"/>
             {% endif %}
+            <h4 class="randocolor p4">Run Time: <span id="runtime">{{ set_list.running_seconds|format_seconds }}</span></h4>
             <p id="gig_name_error" class="well"></p>
             <table id="set_list" class="table table-bordered">
                 <thead>
@@ -196,12 +205,14 @@
                         <th class="catalog_only">Artist</th>
                         <th class="catalog_only">Key</th>
                         <th class="catalog_only">Singers</th>
+                        <td class="catalog_only">{{ song.running_seconds|format_seconds }}</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="ui-state-disabled">
                         <td>(no songs)</td>
                         <td class="set_list_only"></td>
+                        <td class="catalog_only"></td>
                         <td class="catalog_only"></td>
                         <td class="catalog_only"></td>
                         <td class="catalog_only"></td>
@@ -218,6 +229,7 @@
                             <td class="catalog_only">{{ song.artist }}</td>
                             <td class="catalog_only">{{ song.key }}</td>
                             <td class="catalog_only">{{ song.singers }}</td>
+                            <td class="catalog_only">{{ song.running_seconds|format_seconds }}</td>
                         </tr>
                     {% endfor %}
                 {% endif %}

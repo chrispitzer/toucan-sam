@@ -19,6 +19,7 @@ class Song(models.Model):
     cheat_sheet = models.CharField(max_length=255, blank=True)
     lyrics_with_chords = models.TextField(blank=True)
     video_link = models.URLField(max_length=255, blank=True)
+    running_seconds = models.IntegerField(default=120)
     active = models.BooleanField(default=True)
 
     objects = models.Manager()
@@ -71,6 +72,10 @@ class SetList(models.Model):
     @property
     def ordered_songs(self):
         return self.songs.order_by('setitems__order')
+
+    @property
+    def running_seconds(self):
+        return self.songs.aggregate(s=models.Sum('running_seconds'))['s']
 
     def __unicode__(self):
         return self.name or "undefined"
