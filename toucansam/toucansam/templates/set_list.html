@@ -189,13 +189,15 @@
             {% endif %}
         </h2>
         <form id="save_set_list" action="" method="post">
+            <div class="randocolor p4">
             {% if gig %}
                 <h2>{{ gig.name }}</h2>
             {% else %}
                 <label for="gig_name">Gig Name:</label>
                 <input type="text" name="gig_name" id="gig_name" value="{{ set_list.gig.name }}"/>
             {% endif %}
-            <h4 class="randocolor p4">Run Time: <span id="runtime">{{ set_list.running_seconds|format_seconds }}</span></h4>
+            <h4>Run Time: <span id="runtime">{{ set_list.running_seconds|format_seconds }}</span></h4>
+            </div>
             <p id="gig_name_error" class="well"></p>
             <table id="set_list" class="table table-bordered">
                 <thead>
