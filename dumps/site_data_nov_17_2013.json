@@ -1,6 +1,3 @@
-Running `python toucansam/manage.py dumpdata core --indent=2` attached to terminal... up, run.6625
-fatal: Not a git repository (or any of the parent directories): .git
-No local settings found, or it errored
 [
 {
   "model": "core.song", 
