@@ -101,7 +101,7 @@ class SetListSecondsjaxView(AjaxView):
         else:
             set_list = get_object_or_404(SetList, id=set_list_id)
 
-        return format_seconds(set_list.running_seconds)
+        return str(set_list.run_time)
 
 
 

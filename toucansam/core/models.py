@@ -1,6 +1,8 @@
 from urlparse import urlparse, parse_qs
+from datetime import timedelta
 from django.core.urlresolvers import reverse
 from django.db import models
+from durationfield.db.models.fields.duration import DurationField
 
 
 class ActiveSongsManager(models.Manager):
@@ -19,7 +21,7 @@ class Song(models.Model):
     cheat_sheet = models.CharField(max_length=255, blank=True)
     lyrics_with_chords = models.TextField(blank=True)
     video_link = models.URLField(max_length=255, blank=True)
-    running_seconds = models.IntegerField(default=120)
+    run_time = DurationField(default=2*60*1000000)  # default: two minutes
     active = models.BooleanField(default=True)
 
     objects = models.Manager()
@@ -74,8 +76,9 @@ class SetList(models.Model):
         return self.songs.order_by('setitems__order')
 
     @property
-    def running_seconds(self):
-        return self.songs.aggregate(s=models.Sum('running_seconds'))['s']
+    def run_time(self):
+        microseconds = int(self.songs.aggregate(s=models.Sum('run_time'))['s'])
+        return timedelta(microseconds=microseconds)
 
     def __unicode__(self):
         return self.name or "undefined"

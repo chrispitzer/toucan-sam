@@ -175,7 +175,7 @@
                         <td class="catalog_only">{{ song.artist }}</td>
                         <td class="catalog_only">{{ song.key }}</td>
                         <td class="catalog_only">{{ song.singers }}</td>
-                        <td class="catalog_only">{{ song.running_seconds|format_seconds }}</td>
+                        <td class="catalog_only">{{ song.run_time }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -196,7 +196,7 @@
                 <label for="gig_name">Gig Name:</label>
                 <input type="text" name="gig_name" id="gig_name" value="{{ set_list.gig.name }}"/>
             {% endif %}
-            <h4>Run Time: <span id="runtime">{{ set_list.running_seconds|format_seconds }}</span></h4>
+            <h4>Run Time: <span id="runtime">{{ set_list.run_time }}</span></h4>
             </div>
             <p id="gig_name_error" class="well"></p>
             <table id="set_list" class="table table-bordered">
@@ -207,7 +207,7 @@
                         <th class="catalog_only">Artist</th>
                         <th class="catalog_only">Key</th>
                         <th class="catalog_only">Singers</th>
-                        <td class="catalog_only">{{ song.running_seconds|format_seconds }}</td>
+                        <td class="catalog_only">{{ song.run_time }}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -231,7 +231,7 @@
                             <td class="catalog_only">{{ song.artist }}</td>
                             <td class="catalog_only">{{ song.key }}</td>
                             <td class="catalog_only">{{ song.singers }}</td>
-                            <td class="catalog_only">{{ song.running_seconds|format_seconds }}</td>
+                            <td class="catalog_only">{{ song.run_time }}</td>
                         </tr>
                     {% endfor %}
                 {% endif %}

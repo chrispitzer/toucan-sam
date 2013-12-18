@@ -1,13 +1,12 @@
 from django.contrib import admin
 
 from django.contrib.auth.models import Group
-from .models import Song, SetList, Gig
+from core.models import Song, SetList, Gig
 
 
-# show useful stuff...
 class SongAdmin(admin.ModelAdmin):
-    list_display = ('title', 'artist', 'key', 'singers', 'running_seconds', 'active')
-    list_editable = ('singers', 'running_seconds', 'active')
+    list_display = ('title', 'artist', 'key', 'singers', 'run_time', 'active')
+    list_editable = ('singers', 'run_time', 'active')
 
     class Media:
         css = {
