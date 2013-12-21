@@ -1,0 +1,42 @@
+{% extends "mobile/base.html" %}
+
+{% block page_title %}Have a very ukule-ly day{% endblock %}
+
+{% block extra_css %}
+<style>
+    ul, ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(255, 255, 255, 0.60);
+        font-weight: bold;
+        font-size: larger;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    li {
+        margin: 0;
+        padding: 1em;
+        border: 1px solid black;
+    }
+    ul a, ol a {
+        text-decoration: none;
+        color: black;
+    }
+    ul a:visited, ol a:visited {
+        color: #6a6a6a;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<ul>
+    {% for song in songs %}
+    <a href="{% url "song" song.id %}">
+    <li>
+        {{ song.title }}
+    </li>
+    </a>
+    {% endfor %}
+</ul>
+{% endblock %}
