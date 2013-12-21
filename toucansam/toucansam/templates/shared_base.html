@@ -7,8 +7,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
         <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
         {% block extra_js %}{% endblock %}
+        {% block extra_head %}{% endblock %}
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}fonts/3dumb/stylesheet.css" rel="stylesheet">
@@ -18,7 +18,8 @@
         <style type="text/css" media="screen">
             body {
                 background-image: url({{ STATIC_URL }}images/backgrounds/loops1.jpg);
-                padding-top: 55px;
+                margin: 0;
+                padding: 0;
             }
             .navbar {
                 font-family: 'GoodDogRegular';
