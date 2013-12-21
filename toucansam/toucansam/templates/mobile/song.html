@@ -1,0 +1,43 @@
+{% extends "mobile/base.html" %}
+
+{% block page_title %}{{ song.title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    #lyrics {
+        background-color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+    }
+    #fruitorial #embedded {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <h2 id="song-title" class="randocolor">{{ song.title }}</h2>
+    {% if song.youtube_video_id %}
+    <a href="{{ song.video_link }}">
+        <h3 id="hidden" class="randocolor p3">
+            FRUITORIAL!
+        </h3>
+    </a>
+    {% endif %}
+    <h4 id="cheat-sheet" class="randocolor p2">{{ song.cheat_sheet }}</h4>
+    <pre id="lyrics">{{ song.lyrics_with_chords }}</pre>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+$(function() {
+    $("#fruitorial #hidden").click(function() {
+        $("#fruitorial #hidden").hide();
+        $("#fruitorial #embedded").show();
+    });
+    $("#fruitorial #embedded").click(function() {
+        $("#fruitorial #hidden").show();
+        $("#fruitorial #embedded").hide();
+    });
+})
+</script>
+{% endblock %}

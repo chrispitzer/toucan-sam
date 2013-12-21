@@ -192,7 +192,7 @@ class SetListList(TemplateView):
 set_list_list = SetListList.as_view()
 
 
-class SongView(TemplateView):
+class SongView(MobileTemplateView):
     template_name = "song.html"
 
     def get_context_data(self, song_id, **kwargs):

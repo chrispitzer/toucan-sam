@@ -1,0 +1,68 @@
+{% load toucan %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block page_title %}{{ page_title }}{% endblock %}</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        {% block extra_js %}{% endblock %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}fonts/3dumb/stylesheet.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}fonts/impact/stylesheet.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}fonts/gooddog/stylesheet.css" rel="stylesheet">
+        {% block base_css %}
+        <style type="text/css" media="screen">
+            body {
+                background-image: url({{ STATIC_URL }}images/backgrounds/loops1.jpg);
+                padding-top: 55px;
+            }
+            .navbar {
+                font-family: 'GoodDogRegular';
+                font-size: 40px;
+            }
+            .randocolor {
+                background-color: {% randocolor %};
+                padding: 10px;
+            }
+            {% for i in 5|range %}
+            .randocolor.p{{ i }} {
+                background-color: {% randocolor %};
+            }
+            {% endfor %}
+            .smaller {
+                font-size: smaller;
+            }
+            .float_right {
+                float: right;
+            }
+        </style>
+        {% endblock %}
+        {% block extra_css %}{% endblock %}
+    </head>
+    <body>
+
+        {% block navbar %}
+        {% endblock %}
+
+        <div class="container-fluid">
+            {% block content %}{% endblock %}
+        </div>
+
+        {% block extra_scripts %}{% endblock %}
+        <script>
+            var colors = {{ CSS_COLORS|json_dump|safe }};
+            function update_colors() {
+                $(".randocolor").each(function(i, elem){
+                    var index = Math.floor(Math.random() * colors.length);
+                    var color = colors[index];
+                    $(elem).animate({backgroundColor: color});
+                });
+            }
+            window.setInterval(update_colors, 10000);
+        </script>
+    </body>
+</html>
