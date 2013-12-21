@@ -1,6 +1,8 @@
 {% extends "shared_base.html" %}
 {% load toucan %}
 
+{% block page_title %}Have a very ukule-ly day{% endblock %}
+
 {% block extra_head %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 {% endblock %}
@@ -8,6 +10,11 @@
 {% block base_css %}
     {{ block.super }}
     <style>
+        body {
+            font-weight: bold;
+            font-size: larger;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
         #navbar {
             background-color: rgba(0, 0, 0, 0.90);
             width: 100%;
@@ -32,6 +39,18 @@
         }
         h1, h2, h3, h4 {
             margin: 0;
+        }
+        ul, ol {
+            width: 100%;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+        li {
+            margin: 0;
+            padding: 1em;
+            border: 1px solid black;
         }
     </style>
 {% endblock %}

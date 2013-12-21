@@ -1,0 +1,12 @@
+{% extends "mobile/base.html" %}
+
+{% block content %}
+<ul>
+    <li><a href="{% url 'set_list' 'new' %}" class="btn btn-primary">New Set List</a></li>
+    {% for set_list in set_list_list %}
+        <li>
+        <a href="{% url 'set_list' set_list.id %}">{{ set_list.name|default:"(untitled)" }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

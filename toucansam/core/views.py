@@ -181,7 +181,7 @@ class SetListSecondsjaxView(AjaxView):
         return str(set_list.run_time)
 
 
-class SetListList(TemplateView):
+class SetListList(MobileTemplateView):
     template_name = "set_list_list.html"
 
     def get_context_data(self, **kwargs):
