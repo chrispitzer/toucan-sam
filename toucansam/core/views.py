@@ -8,7 +8,8 @@ from core.models import Song, Gig, SetList, SetItem
 from core.templatetags.toucan import randocolor
 from lib.decorators import template
 
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
+
 
 @template("home.html")
 def home(request):
@@ -33,18 +34,24 @@ class SetListView(TemplateView):
             set_list = SetList()
         else:
             set_list = get_object_or_404(SetList, id=set_list_id)
+
+        songs = Song.active_objects.exclude(set_lists=set_list)
+        if not set_list.show_proposed:
+            songs = songs.exclude(proposed=True)
         context.update({
-            "songs": Song.active_objects.exclude(set_lists=set_list),
+            "songs": songs,
             "set_list_id": set_list_id,
             "set_list": set_list
         })
         return context
 
-    def post(self, request, gig_id=None):
-        if gig_id:
-            gig = get_object_or_404(Gig, id=gig_id)
-        else:
-            gig = Gig(name=request.POST['gig_name'])
+
+    def post(self, request, set_list_id, **kwargs):
+        if request.POST['toggle_proposed']:
+            set_list = get_object_or_404(SetList, id=set_list_id)
+            set_list.show_proposed = not set_list.show_proposed
+            set_list.save()
+        return redirect(reverse("set_list", args=[set_list_id]))
 
 
 class AjaxException(Exception):
@@ -104,7 +111,6 @@ class SetListSecondsjaxView(AjaxView):
         return str(set_list.run_time)
 
 
-
 class SetListList(TemplateView):
     template_name = "set_list_list.html"
 
@@ -115,11 +121,21 @@ class SetListList(TemplateView):
 
 set_list_list = SetListList.as_view()
 
-@template("song.html")
-def song(request, song_id):
-    return {
-        "song": get_object_or_404(Song, id=song_id),
-    }
+
+class SongView(TemplateView):
+    template_name = "song.html"
+
+    def get_context_data(self, song_id, **kwargs):
+        context = super(SongView, self).get_context_data(**kwargs)
+        context['song'] = get_object_or_404(Song, id=song_id)
+        return context
+
+    def post(self, request, song_id):
+        if request.POST['accept_proposed']:
+            song = get_object_or_404(Song, id=song_id)
+            song.proposed = False
+            song.save()
+        return redirect("song", song_id)
 
 
 class CheatSheetView(TemplateView):

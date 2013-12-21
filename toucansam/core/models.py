@@ -22,6 +22,7 @@ class Song(models.Model):
     lyrics_with_chords = models.TextField(blank=True)
     video_link = models.URLField(max_length=255, blank=True)
     run_time = DurationField(default=2*60*1000000)  # default: two minutes
+    proposed = models.BooleanField(default=True)
     active = models.BooleanField(default=True)
 
     objects = models.Manager()
@@ -66,6 +67,7 @@ class SetItem(models.Model):
 class SetList(models.Model):
     gig = models.ForeignKey(Gig)
     songs = models.ManyToManyField(Song, related_name="set_lists", through=SetItem)
+    show_proposed = models.BooleanField(default=False)
 
     @property
     def name(self):

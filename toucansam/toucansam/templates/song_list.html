@@ -8,6 +8,24 @@
     table#song_list {
         margin-bottom: 10px;
     }
+
+    table#song_list tr.even td.sorting_1,
+    table#song_list tr.even {
+        background-color: white;
+    }
+    table#song_list tr.odd td.sorting_1,
+    table#song_list tr.odd {
+        background-color: #e8e8e8;
+    }
+
+    table#song_list tr.proposed.even td.sorting_1,
+    table#song_list tr.proposed.even {
+        background-color: #EAFFEB;
+    }
+    table#song_list tr.proposed.odd td.sorting_1,
+    table#song_list tr.proposed.odd {
+        background-color: #BBFFBB;
+    }
 </style>
 {% endblock %}
 
@@ -40,7 +58,7 @@
         </thead>
         <tbody>
             {% for song in songs %}
-                <tr>
+                <tr class="{% if song.proposed %}proposed{% endif %}">
                     <td>
                         <a href="{% url "song" song.id %}">
                             {{ song.title }}

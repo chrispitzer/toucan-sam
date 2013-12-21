@@ -13,9 +13,6 @@
 
 {% block extra_css %}
 <style type="text/css" media="screen">
-    #cheat-sheet {
-        float: right;
-    }
     table {
         background-color: white;
     }
@@ -33,6 +30,9 @@
     }
     #gig_name_error {
         display: none;
+    }
+    tr.proposed {
+        background-color: #D3FFD6;
     }
     .ui-state-disabled {
         display: none;
@@ -145,7 +145,15 @@
 
 <div class="row">
     <div class="span7">
-        <h2 class="randocolor p2">Catalog</h2>
+        <h2 class="randocolor p2">
+            Catalog
+            {% if set_list_id != "new" and user.is_staff %}
+            <form method="post" class="float_right"> {% csrf_token %}
+                <input type="submit" class="btn btn-info" name="toggle_proposed"
+                       value="{% if set_list.show_proposed %}Hide{% else %}Show{% endif %} Proposed Songs"/>
+            </form>
+            {% endif %}
+        </h2>
         <table id="song_list" class="table table-bordered">
             <thead>
                 <tr>
@@ -167,7 +175,7 @@
                     <td class="catalog_only"></td>
                 </tr>
                 {% for song in songs %}
-                    <tr data-id="{{ song.id }}" class="song">
+                    <tr data-id="{{ song.id }}" class="song {% if song.proposed %}proposed{% endif %}">
                         <td>{{ song.title }}</td>
                         <td class="set_list_only">
                             <a href="{% url "song" song.id %}">{{ song.cheat_sheet }}</a>
@@ -185,7 +193,7 @@
         <h2 class="randocolor p3">
             Set List
             {% if set_list_id != "new" %}
-            <a href="{% url "cheat_sheet" set_list_id %}" id="cheat-sheet" class="btn btn-info" target="_blank">Print a cheat sheet</a>
+            <a href="{% url "cheat_sheet" set_list_id %}" class="btn btn-info float_right" target="_blank">Print a cheat sheet</a>
             {% endif %}
         </h2>
         <form id="save_set_list" action="" method="post">
@@ -196,7 +204,7 @@
                 <label for="gig_name">Gig Name:</label>
                 <input type="text" name="gig_name" id="gig_name" value="{{ set_list.gig.name }}"/>
             {% endif %}
-            <h4>Run Time: <span id="runtime">{{ set_list.run_time }}</span></h4>
+            <h4 class="float_right">Run Time: <span id="runtime">{{ set_list.run_time }}</span></h4>
             </div>
             <p id="gig_name_error" class="well"></p>
             <table id="set_list" class="table table-bordered">
@@ -221,11 +229,11 @@
                     </tr>
                     {% if set_list.id %}
                     {% for song in set_list.ordered_songs %}
-                        <tr data-id="{{ song.id }}" class="song">
+                        <tr data-id="{{ song.id }}" class="song {% if song.proposed %}proposed{% endif %}">
                             <td>{{ song.title }}</td>
                             <td class="set_list_only">
                                 <a href="{% url "song" song.id %}">
-                                    {{ song.cheat_sheet }}
+                                    {{ song.cheat_sheet|default:"(I'm no help)" }}
                                 </a>
                             </td>
                             <td class="catalog_only">{{ song.artist }}</td>

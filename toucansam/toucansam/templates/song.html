@@ -20,6 +20,10 @@
     margin: 0;
 }
 
+h1 form {
+    font-size: large;
+}
+
 .scrolling {
     position: fixed;
     top: 51px;
@@ -55,7 +59,15 @@ $(function(){
 {% endblock %}
 
 {% block content %}
-    <h1 class="randocolor">{{ song.title }}</h1>
+    <h1 id="song_title" class="randocolor">
+        {{ song.title }}
+        {% if song.proposed and user.is_staff %}
+        <form method="post" class="float_right"> {% csrf_token %}
+            I'm a proposal!
+            <input type="submit" name="accept_proposed" value="Accept me!" class="btn btn-info"/>
+        </form>
+        {% endif %}
+    </h1>
 
     <h4 class="randocolor p1">
         {% if song.artist %}
