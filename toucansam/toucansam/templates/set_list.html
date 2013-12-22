@@ -137,7 +137,7 @@
 {% endblock %}
 
 {% block content %}
-<div  class="randocolor p1">
+<div  class="randocolor">
     <h2>Build you a set list!</h2>
         Drag items from the table on the left to the set list on the right. You can also drag-and-drop to
         reorder items in the setlist.
@@ -145,7 +145,7 @@
 
 <div class="row">
     <div class="span7">
-        <h2 class="randocolor p2">
+        <h2 class="randocolor">
             Catalog
             {% if set_list_id != "new" and user.is_staff %}
             <form method="post" class="float_right"> {% csrf_token %}
@@ -190,14 +190,14 @@
         </table>
     </div>
     <div class="span5">
-        <h2 class="randocolor p3">
+        <h2 class="randocolor">
             Set List
             {% if set_list_id != "new" %}
             <a href="{% url "cheat_sheet" set_list_id %}" class="btn btn-info float_right" target="_blank">Print a cheat sheet</a>
             {% endif %}
         </h2>
         <form id="save_set_list" action="" method="post">
-            <div class="randocolor p4">
+            <div class="randocolor">
             {% if gig %}
                 <h2>{{ gig.name }}</h2>
             {% else %}

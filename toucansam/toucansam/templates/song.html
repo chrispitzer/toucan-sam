@@ -78,7 +78,7 @@ $(function(){
         {% endif %}
     </h1>
 
-    <h4 class="randocolor p1">
+    <h4 class="randocolor">
         {% if song.artist %}
             by {{ song.artist }}
         {% endif %}
@@ -103,7 +103,7 @@ $(function(){
     {% if song.cheat_sheet %}
         <div id="cheatsheet">
             <div id="cheatsheet-inner" class="pinnable" >
-                <h3 class="randocolor p2">
+                <h3 class="randocolor">
                     cheat sheet: {{ song.cheat_sheet }}
                     <a href="#" class="pin btn btn-info float_right">Unpin</a>
                 </h3>

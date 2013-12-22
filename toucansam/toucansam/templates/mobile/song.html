@@ -18,12 +18,12 @@
     <h2 id="song-title" class="randocolor">{{ song.title }}</h2>
     {% if song.youtube_video_id %}
     <a href="{{ song.video_link }}">
-        <h3 id="hidden" class="randocolor p3">
+        <h3 id="hidden" class="randocolor">
             FRUITORIAL!
         </h3>
     </a>
     {% endif %}
-    <h4 id="cheat-sheet" class="randocolor p2">{{ song.cheat_sheet }}</h4>
+    <h4 id="cheat-sheet" class="randocolor">{{ song.cheat_sheet }}</h4>
     <pre id="lyrics">{{ song.lyrics_with_chords }}</pre>
 {% endblock %}
 
