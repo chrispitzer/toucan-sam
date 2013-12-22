@@ -4,9 +4,11 @@
 <ul>
     <li><a href="{% url 'set_list' 'new' %}" class="btn btn-primary">New Set List</a></li>
     {% for set_list in set_list_list %}
+        <a href="{% url 'set_list' set_list.id %}">
         <li>
-        <a href="{% url 'set_list' set_list.id %}">{{ set_list.name|default:"(untitled)" }}</a>
+            {{ set_list.name|default:"(untitled)" }}
         </li>
+        </a>
     {% endfor %}
 </ul>
 {% endblock %}

@@ -49,9 +49,11 @@
         {% block navbar %}
         {% endblock %}
 
+        {% block content-wrapper %}
         <div class="container-fluid">
             {% block content %}{% endblock %}
         </div>
+        {% endblock %}
 
         {% block extra_scripts %}{% endblock %}
         <script>

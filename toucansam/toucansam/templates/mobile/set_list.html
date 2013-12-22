@@ -1,0 +1,142 @@
+{% extends "mobile/base.html" %}
+
+{% block extra_js %}
+    <script src="{{ STATIC_URL }}js/jquery.ui.touch-punch.min.js"></script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        margin-bottom: 44px;
+    }
+    #choose li.chosen {
+        background-color: rgba(0,0,255,0.2);
+    }
+    #choose li.chosen:before {
+        content: '✓';
+        color: blue;
+    }
+    #tabbar {
+        width: 100%
+    }
+    #tabbar .tab {
+        display: none;
+    }
+    #tabbar .tab.selected {
+        display: block;
+    }
+    #tabbar-select {
+        width: 100%;
+        height: 34px;
+        padding-top: 10px;
+        background-color: black;
+        position: fixed;
+        bottom: 0;
+        color: white;
+        font-family: 'GoodDogRegular';
+        font-size: 30px;
+        text-align: center;
+    }
+    #tabbar-select a {
+        color: #9e9e9e;
+        padding: 0 1em;
+    }
+    #tabbar-select a.selected {
+        color: white;
+    }
+
+    #sort {
+        width: 85%;
+        margin-right: 15%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h2 class="randocolor">{{ set_list.gig.name }} (<span id="runtime">{{ set_list.run_time }}</span>)</h2>
+
+<div id="tabbar">
+    <ul id="choose" class="tab">
+        {% for song in songs %}
+        <li data-id="{{ song.id }}" class="{% if song in set_list.songs.all %}chosen{% endif %}">
+            {{ song.title }}
+        </li>
+        {% endfor %}
+    </ul>
+    <ol id="sort" class="tab selected">
+        {% for song in set_list.ordered_songs %}
+        <li data-id="{{ song.id }}">{{ song.title }}</li>
+        {% endfor %}
+    </ol>
+</div>
+<div id="tabbar-select">
+<a href="#" tab="sort" class="selected">Sort</a>
+<a href="#" tab="choose">Choose</a>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+$(function() {
+    $("#tabbar-select a").click(function(event) {
+        event.preventDefault();
+        var tab = $(event.target).attr("tab");
+        var tab = $("#"+tab);
+        $("#tabbar .tab").removeClass("selected");
+        $("#tabbar-select a").removeClass("selected");
+        tab.addClass("selected");
+        $(event.target).addClass("selected");
+        return false;
+    });
+
+    $("#choose li").click(function(event) {
+        $(event.target).toggleClass("chosen");
+        var data = {
+            song_id: $(event.target).data('id'),
+            action: $(event.target).hasClass("chosen") ? "add" : "remove"
+        };
+        $.post("{% url "add_to_setlist" set_list_id %}", data, function(resp) {
+            if (resp['error']) {
+                alert(resp['error']);
+            } else {
+                update_runtime();
+            }
+        });
+        if ($(event.target).hasClass("chosen")) {
+            $("#sort").append($(event.target).clone());
+        } else {
+            $("#sort li[data-id="+$(event.target).data('id')+"]").remove();
+        }
+    });
+
+    $("#sort").sortable({
+        cancel: ".ui-state-disabled",
+        stop: function() {
+            save();
+        }
+    }).disableSelection();
+});
+
+function update_runtime() {
+    $.get("{% url "set_list_time" set_list_id %}", function(data) {
+        $("#runtime").text(data);
+    });
+}
+
+function save() {
+    var song_rows  = $("#sort li");
+    var data = {
+        songs: []
+    };
+    $.each(song_rows, function (i, tr) {
+        data["songs"].push($(tr).data('id'));
+    });
+    $.post("{% url "set_list_ajax" set_list_id %}", data, function(resp) {
+        resp = JSON.parse(resp);
+        if (resp['error']) {
+            show_error(resp['error']);
+        }
+    });
+}
+</script>
+{% endblock %}

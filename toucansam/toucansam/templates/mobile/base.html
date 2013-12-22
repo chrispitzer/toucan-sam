@@ -9,6 +9,7 @@
     {{ block.super }}
     <style>
         body {
+            background-attachment: fixed;
             font-weight: bold;
             font-size: larger;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -40,10 +41,15 @@
         }
         ul, ol {
             width: 100%;
-            list-style: none;
             margin: 0;
             padding: 0;
             background-color: rgba(255, 255, 255, 0.6);
+        }
+        ol {
+            list-style-position: inside;
+        }
+        ul {
+            list-style-type: none;
         }
         li {
             margin: 0;
@@ -57,5 +63,11 @@
     <div id="navbar">
         <a href="{% url "song_list" %}">Songs</a>
         <a href="{% url "set_list_list" %}">Set Lists</a>
+    </div>
+{% endblock %}
+
+{% block content-wrapper %}
+    <div>
+        {% block content %}{% endblock %}
     </div>
 {% endblock %}

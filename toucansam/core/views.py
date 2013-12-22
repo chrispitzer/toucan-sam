@@ -2,16 +2,15 @@ import json
 import os
 import re
 from django.core.urlresolvers import reverse
+from django.db.models import Max
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, View
-from core.models import Song, Gig, SetList, SetItem
-from core.templatetags.toucan import randocolor
-from lib.decorators import template
-
 from django.shortcuts import get_object_or_404, redirect
 
+from core.models import Song, Gig, SetList, SetItem
+from core.templatetags.toucan import randocolor
 
 class MobileTemplateView(TemplateView):
     is_mobile = False
@@ -95,7 +94,7 @@ class SongListView(MobileTemplateView):
         return context
 
 
-class SetListView(TemplateView):
+class SetListView(MobileTemplateView):
     template_name = "set_list.html"
 
     def get_context_data(self, set_list_id, **kwargs):
@@ -105,7 +104,9 @@ class SetListView(TemplateView):
         else:
             set_list = get_object_or_404(SetList, id=set_list_id)
 
-        songs = Song.active_objects.exclude(set_lists=set_list)
+        songs = Song.active_objects.all()
+        if not self.is_mobile:
+            songs = songs.exclude(set_lists=set_list)
         if not set_list.show_proposed:
             songs = songs.exclude(proposed=True)
         context.update({
@@ -146,7 +147,7 @@ class AjaxView(View):
 class SetListAjax(AjaxView):
 
     def post(self, request, set_list_id):
-        gig_name = request.POST["gig_name"]
+        gig_name = request.POST.get("gig_name")
         response_data = '{}'
 
         if set_list_id == "new":
@@ -160,8 +161,9 @@ class SetListAjax(AjaxView):
         else:
             set_list = get_object_or_404(SetList, id=set_list_id)
 
-        set_list.gig.name = gig_name
-        set_list.gig.save()
+        if gig_name:
+            set_list.gig.name = gig_name
+            set_list.gig.save()
 
         set_list.songs.clear()
         for song_order, song_id in enumerate(request.POST.getlist('songs[]')):
@@ -169,6 +171,20 @@ class SetListAjax(AjaxView):
             SetItem.objects.create(set_list=set_list, song=song, order=song_order)
 
         return response_data
+
+
+class UpdateSetListAjax(AjaxView):
+
+    def post(self, request, set_list_id):
+        set_list = get_object_or_404(SetList, id=set_list_id)
+        song = get_object_or_404(Song, id=request.POST['song_id'])
+        if (request.POST['action'] == 'add'):
+            song_order = set_list.songs.aggregate(o=Max('setitems__order'))['o'] + 1
+            SetItem.objects.create(set_list=set_list, song=song, order=song_order)
+        else:
+            SetItem.objects.get(set_list=set_list, song=song).delete()
+
+        return [s.title for s in set_list.ordered_songs]
 
 
 class SetListSecondsjaxView(AjaxView):

@@ -19,6 +19,9 @@
         padding: 1em;
         border: 1px solid black;
     }
+    li.proposed {
+        background-color: rgba(0,255,0, 0.3);
+    }
 </style>
 {% endblock %}
 
@@ -27,7 +30,7 @@
 <ul>
     {% for song in songs %}
     <a href="{% url "song" song.id %}">
-    <li>
+    <li class="{% if song.proposed %}proposed{% endif %}">
         {{ song.title }}
     </li>
     </a>
