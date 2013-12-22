@@ -28,6 +28,9 @@ h1 form {
     position: fixed;
     top: 51px;
 }
+.scrolling.pinned {
+    position: relative;
+}
 
 </style>
 {% endblock %}
@@ -38,6 +41,12 @@ $(function(){
     $(window).scroll(function(){
       $('#cheatsheet-inner').toggleClass('scrolling', $(window).scrollTop() + 51 > $('#cheatsheet').offset().top);
         $('#cheatsheet-inner h3').width($('#lyrics').width());
+    });
+    $(".pin").click(function (event) {
+        event.preventDefault();
+        $("#cheatsheet-inner").toggleClass("pinned");
+        var text = $(event.target).text();
+        $(event.target).text(text == "Pin" ? "Unpin" : "Pin");
     });
 });
 </script>
@@ -93,8 +102,11 @@ $(function(){
 
     {% if song.cheat_sheet %}
         <div id="cheatsheet">
-            <div id="cheatsheet-inner" >
-                <h3 class="randocolor p2">cheat sheet: {{ song.cheat_sheet }}</h3>
+            <div id="cheatsheet-inner" class="pinnable" >
+                <h3 class="randocolor p2">
+                    cheat sheet: {{ song.cheat_sheet }}
+                    <a href="#" class="pin btn btn-info float_right">Unpin</a>
+                </h3>
             </div>
         </div>
     {% endif %}
