@@ -8,24 +8,6 @@
         margin-bottom: 10px;
         background-color: rgba(255, 255, 255, 0.7);
     }
-    table.dataTable thead th {
-        cursor: pointer;
-    }
-    table.dataTable thead th:after {
-        color: blue;
-        font-weight: bold;
-        float: right;
-        font-size: larger;
-    }
-    th.sorting_desc:after {
-        content: "⇓";
-    }
-    th.sorting_asc:after {
-        content: "⇑";
-    }
-    thead {
-        background-color: rgba(0,0,255,0.2);
-    }
     tr.odd {
         background-color: rgba(0, 0, 0, 0.2);
     }
@@ -47,14 +29,16 @@
             bPaginate:false,
             bInfo:false
         });
+        $('.dataTables_filter').addClass('randocolor p2');
     });
 </script>
 {% endblock %}
 
 {% block content %}
 
-    <h1 class="randocolor">EVERY TOUCAN SAM SONG EVER!!!</h1>
-    <a href="{% url "master_cheat_sheet" %}" class="btn btn-info" target="_blank">Print the master cheat sheet</a>
+    <h1 class="randocolor">EVERY TOUCAN SAM SONG EVER!!!
+        <a href="{% url "master_cheat_sheet" %}" class="btn btn-info float_right" target="_blank">Print the master cheat sheet</a>
+    </h1>
     <table id="song_list" class="table">
         <thead>
             <tr>

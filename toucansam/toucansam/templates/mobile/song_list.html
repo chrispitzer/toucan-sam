@@ -4,36 +4,54 @@
 
 {% block extra_css %}
 <style>
-    ul, ol {
-        width: 100%;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        background-color: rgba(255, 255, 255, 0.6);
+    .proposed {
+        background-color: rgba(0,255,0, 0.3);
+    }
+    .dataTables_filter label {
         font-weight: bold;
         font-size: larger;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
-    li {
-        margin: 0;
-        padding: 1em;
-        border: 1px solid black;
-    }
-    li.proposed {
-        background-color: rgba(0,255,0, 0.3);
+    tr[href] {
+        cursor: pointer;
     }
 </style>
 {% endblock %}
 
+{% block extra_scripts %}
+<script src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        $('#song_list').dataTable({
+            bPaginate:false,
+            bInfo:false
+        });
+        $('.dataTables_filter').addClass('randocolor');
+        $('tr[href]').click(function(event) {
+            var url = $(event.target).parent('tr[href]').attr('href');
+            document.location = url;
+        });
+    });
+</script>
+{% endblock %}
 
 {% block content %}
-<ul>
-    {% for song in songs %}
-    <a href="{% url "song" song.id %}">
-    <li class="{% if song.proposed %}proposed{% endif %}">
-        {{ song.title }}
-    </li>
-    </a>
-    {% endfor %}
-</ul>
+
+<table id="song_list" class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for song in songs %}
+        <tr class="{% if song.proposed %}proposed{% endif %}" href="{% url "song" song.id %}">
+            <td>{{ song.title }}</td>
+            <td>{{ song.artist }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}

@@ -41,6 +41,23 @@
             .float_right {
                 float: right;
             }
+
+            table.dataTable thead {
+                background-color: rgba(0,0,255,0.2);
+                cursor: pointer;
+            }
+            table.dataTable thead th:after {
+                color: blue;
+                font-weight: bold;
+                float: right;
+                font-size: larger;
+            }
+            table.dataTable th.sorting_desc:after {
+                content: "⇓";
+            }
+            table.dataTable th.sorting_asc:after {
+                content: "⇑";
+            }
         </style>
         {% endblock %}
         {% block extra_css %}{% endblock %}
