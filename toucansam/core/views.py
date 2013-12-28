@@ -229,6 +229,9 @@ class SongView(MobileTemplateView):
         elif 'update_time' in request.POST:
             song.run_time = int(request.POST['seconds'])*1000000
             song.save()
+        elif 'update_difficulty' in request.POST:
+            song.difficulty = int(request.POST['difficulty'])
+            song.save()
 
         return redirect("song", song_id)
 

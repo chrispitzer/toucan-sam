@@ -2,6 +2,10 @@
 
 {% block page_title %}Have a very ukule-ly day{% endblock %}
 
+{% block extra_js %}
+    <script src="{{ STATIC_URL }}js/jquery.cookie.js"></script>
+{% endblock %}
+
 {% block extra_css %}
 <style type="text/css" media="screen">
     table {
@@ -17,11 +21,23 @@
     tr.proposed.odd {
         background-color: rgba(0,160,0,0.3);
     }
+
+    .hidden {
+        display: none;
+    }
+
     img.uke {
         height: 30px;
         opacity: .4;
     }
     img.uke.on {
+        opacity: 1;
+    }
+
+    .difficulty.selected img.uke.on {
+        opacity: .4;
+    }
+    .difficulty.selected img.uke.selected {
         opacity: 1;
     }
 </style>
@@ -37,6 +53,46 @@
             bInfo:false
         });
         $('.dataTables_filter').addClass('randocolor');
+
+        {% if user.is_staff %}
+        $('.uke').css({'cursor': 'pointer'})
+        $('.uke').mouseenter(function(event) {
+            var uke_container = $(event.target).parent('.difficulty');
+            var all_ukes = uke_container.children('.uke');
+            uke_container.addClass('selected');
+            all_ukes.removeClass('selected');
+            $(event.target).addClass('selected');
+            var difficulty = parseInt($(event.target).data('difficulty'));
+            var d = 1;
+            while (d <= difficulty) {
+                all_ukes.filter('.u'+d).addClass('selected');
+                d++;
+            }
+        });
+        $('.difficulty').mouseleave(function(event) {
+            $(event.target).removeClass('selected');
+            $(event.target).children('.uke').removeClass('selected');
+        });
+        $('.uke').click(function(event) {
+            var uke = $(event.target);
+            var data = {
+                update_difficulty: 'yup',
+                difficulty: uke.data('difficulty'),
+                csrfmiddlewaretoken: $.cookie('csrftoken')
+            }
+            $.post(uke.data('song-url'), data, function(data) {
+                var uke_container = $(event.target).parent('.difficulty');
+                var all_ukes = uke_container.children('.uke');
+                var difficulty = parseInt($(event.target).data('difficulty'));
+                var d = 1;
+                all_ukes.removeClass('on');
+                while (d <= difficulty) {
+                    all_ukes.filter('.u'+d).addClass('on');
+                    d++;
+                }
+            });
+        });
+        {% endif %}
     });
 </script>
 {% endblock %}
@@ -71,21 +127,25 @@
                     <td>{{ song.artist }}</td>
                     <td>{{ song.key }}</td>
                     <td>{{ song.singers }}</td>
-                    <td>
+                    <td class="difficulty">
+                        <span class="hidden">{{ song.difficulty }}</span>
                         {% for i in '1'|range:'6' %}
                             <img src="{{ STATIC_URL }}images/uke1.png"
-                                {% if i == 1 %}
+                                 {% if i == 1 %}
                                     title="Violent Femmes"
-                                {% elif i == 2 %}
+                                 {% elif i == 2 %}
                                     title="Ramones"
-                                {% elif i == 3 %}
+                                 {% elif i == 3 %}
                                     title="Misfits"
-                                {% elif i == 4 %}
+                                 {% elif i == 4 %}
                                     title="Clash"
-                                {% elif i == 5 %}
+                                 {% elif i == 5 %}
                                     title="Bowie"
-                                {% endif %}
-                                 class="uke {{ i }} {% if i <= song.difficulty %}on{% endif %}"/>
+                                 {% endif %}
+                                 data-difficulty="{{ i }}"
+                                 data-song-url="{% url 'song' song.id %}"
+                                 class="uke u{{ i }} {% if i <= song.difficulty %}on{% endif %}">
+                             </img>
                         {% endfor %}
                     </td>
                     <td>
