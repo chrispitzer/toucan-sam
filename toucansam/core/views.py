@@ -8,9 +8,11 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, View
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib.admin.views.decorators import staff_member_required
 
 from core.models import Song, Gig, SetList, SetItem
 from core.templatetags.toucan import randocolor
+
 
 class MobileTemplateView(TemplateView):
     is_mobile = False
@@ -116,7 +118,7 @@ class SetListView(MobileTemplateView):
         })
         return context
 
-
+    @method_decorator(staff_member_required)
     def post(self, request, set_list_id, **kwargs):
         if request.POST['toggle_proposed']:
             set_list = get_object_or_404(SetList, id=set_list_id)
@@ -146,6 +148,7 @@ class AjaxView(View):
 
 class SetListAjax(AjaxView):
 
+    @method_decorator(staff_member_required)
     def post(self, request, set_list_id):
         gig_name = request.POST.get("gig_name")
         response_data = '{}'
@@ -175,6 +178,7 @@ class SetListAjax(AjaxView):
 
 class UpdateSetListAjax(AjaxView):
 
+    @method_decorator(staff_member_required)
     def post(self, request, set_list_id):
         set_list = get_object_or_404(SetList, id=set_list_id)
         song = get_object_or_404(Song, id=request.POST['song_id'])
@@ -216,6 +220,7 @@ class SongView(MobileTemplateView):
         context['song'] = get_object_or_404(Song, id=song_id)
         return context
 
+    @method_decorator(staff_member_required)
     def post(self, request, song_id):
         song = get_object_or_404(Song, id=song_id)
         if 'accept_proposed' in request.POST:

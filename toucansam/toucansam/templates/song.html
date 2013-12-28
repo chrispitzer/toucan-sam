@@ -106,7 +106,7 @@ $(function(){
     <h1 id="song_title" class="randocolor">
         {{ song.title }}
         <span id="time">{{ song.run_time }}</span>
-    
+
         {% if user.is_staff %}
         <a href="#" id="timer" class="btn btn-info">Time it!</a>
         <form id="update_time" method="post"> {% csrf_token %}
