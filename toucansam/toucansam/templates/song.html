@@ -2,6 +2,10 @@
 
 {% block page_title %}{{ song.title }}{% endblock %}
 
+{% block extra_js %}
+    <script src="{{ STATIC_URL }}js/moment-with-langs.js"></script>
+{% endblock %}
+
 {% block extra_css %}
 <style type="text/css" media="screen">
 #embedded {
@@ -31,6 +35,12 @@ h1 form {
 .scrolling.pinned {
     position: relative;
 }
+#time {
+    padding-left: 1em;
+}
+#attic {
+    display: none;
+}
 
 </style>
 {% endblock %}
@@ -38,7 +48,7 @@ h1 form {
 {% block extra_scripts %}
 <script>
 $(function(){
-    $(window).scroll(function(){
+    $(window).scroll(function() {
       $('#cheatsheet-inner').toggleClass('scrolling', $(window).scrollTop() + 51 > $('#cheatsheet').offset().top);
         $('#cheatsheet-inner h3').width($('#lyrics').width());
     });
@@ -48,6 +58,31 @@ $(function(){
         var text = $(event.target).text();
         $(event.target).text(text == "Pin" ? "Unpin" : "Pin");
     });
+    var time = 0;
+    var timing = false;
+    var timer;
+    $("#timer").click(function (event) {
+        event.preventDefault();
+        timing = !timing;
+        if (timing) {
+            $("#timer").text("Stop Time");
+            time = 0;
+            update_time(time);
+            timer = setInterval(function(){
+                time++;
+                update_time(time);
+            }, 1000);
+        } else {
+            $("#timer").text("Start Time");
+            clearInterval(timer);
+            $("#update_time #seconds").val(time);
+            $("#update_time").submit();
+        }
+    });
+    function update_time(time) {
+        var interval = moment().startOf('day').seconds(time);
+        $("#time").text(interval.format('H:mm:ss'));
+    }
 });
 </script>
 {% endblock %}
@@ -70,6 +105,12 @@ $(function(){
 {% block content %}
     <h1 id="song_title" class="randocolor">
         {{ song.title }}
+        <span id="time">{{ song.run_time }}</span>
+        <a href="#" id="timer" class="btn btn-info">Time it!</a>
+        <form id="update_time" method="post"> {% csrf_token %}
+            <input type="hidden" name="update_time" value="yup"/>
+            <input type="hidden" id="seconds" name="seconds" value="0"/>
+        </form>
         {% if song.proposed and user.is_staff %}
         <form method="post" class="float_right"> {% csrf_token %}
             I'm a proposal!
@@ -112,4 +153,8 @@ $(function(){
     {% endif %}
 
     <pre id="lyrics">{{ song.lyrics_with_chords }}</pre>
+
+    <div id="attic">
+
+    </div>
 {% endblock %}

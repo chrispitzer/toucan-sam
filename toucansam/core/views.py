@@ -217,10 +217,14 @@ class SongView(MobileTemplateView):
         return context
 
     def post(self, request, song_id):
-        if request.POST['accept_proposed']:
-            song = get_object_or_404(Song, id=song_id)
+        song = get_object_or_404(Song, id=song_id)
+        if 'accept_proposed' in request.POST:
             song.proposed = False
             song.save()
+        elif 'update_time' in request.POST:
+            song.run_time = int(request.POST['seconds'])*1000000
+            song.save()
+
         return redirect("song", song_id)
 
 
