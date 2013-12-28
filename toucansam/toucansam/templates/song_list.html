@@ -17,6 +17,13 @@
     tr.proposed.odd {
         background-color: rgba(0,160,0,0.3);
     }
+    img.uke {
+        height: 30px;
+        opacity: .4;
+    }
+    img.uke.on {
+        opacity: 1;
+    }
 </style>
 {% endblock %}
 
@@ -46,6 +53,7 @@
                 <th>Artist</th>
                 <th>Key</th>
                 <th>Singers</th>
+                <th>Difficulty</th>
                 <th>Video</th>
             </tr>
         </thead>
@@ -63,6 +71,23 @@
                     <td>{{ song.artist }}</td>
                     <td>{{ song.key }}</td>
                     <td>{{ song.singers }}</td>
+                    <td>
+                        {% for i in '1'|range:'6' %}
+                            <img src="{{ STATIC_URL }}images/uke1.png"
+                                {% if i == 1 %}
+                                    title="Violent Femmes"
+                                {% elif i == 2 %}
+                                    title="Ramones"
+                                {% elif i == 3 %}
+                                    title="Misfits"
+                                {% elif i == 4 %}
+                                    title="Clash"
+                                {% elif i == 5 %}
+                                    title="Bowie"
+                                {% endif %}
+                                 class="uke {{ i }} {% if i <= song.difficulty %}on{% endif %}"/>
+                        {% endfor %}
+                    </td>
                     <td>
                         {% if song.video_link %}
                             <a href="{{ song.video_link }}">

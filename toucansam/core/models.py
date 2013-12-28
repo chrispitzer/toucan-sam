@@ -1,6 +1,7 @@
 from urlparse import urlparse, parse_qs
 from datetime import timedelta
 from django.core.urlresolvers import reverse
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from durationfield.db.models.fields.duration import DurationField
 
@@ -22,6 +23,18 @@ class Song(models.Model):
     lyrics_with_chords = models.TextField(blank=True)
     video_link = models.URLField(max_length=255, blank=True)
     run_time = DurationField(default=2*60*1000000)  # default: two minutes
+    difficulty = models.IntegerField(default=3,
+                                     choices=(
+                                         (1, 'Real Easy'),
+                                         (2, 'Easy'),
+                                         (3, 'Normal'),
+                                         (4, 'Hard'),
+                                         (5, 'Real Hard'),
+                                     ),
+                                     validators=[
+        MinValueValidator(1),
+        MaxValueValidator(5),
+    ])
     proposed = models.BooleanField(default=True)
     active = models.BooleanField(default=True)
 

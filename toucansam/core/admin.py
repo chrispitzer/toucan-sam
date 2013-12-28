@@ -5,8 +5,23 @@ from core.models import Song, SetList, Gig
 
 
 class SongAdmin(admin.ModelAdmin):
-    list_display = ('title', 'artist', 'key', 'singers', 'run_time', 'proposed', 'active')
-    list_editable = ('singers', 'run_time', 'proposed', 'active')
+    list_display = (
+        'title',
+        'artist',
+        'key',
+        'singers',
+        'run_time',
+        'difficulty',
+        'proposed',
+        'active'
+    )
+    list_editable = (
+        'singers',
+        'run_time',
+        'difficulty',
+        'proposed',
+        'active'
+    )
 
     class Media:
         css = {
