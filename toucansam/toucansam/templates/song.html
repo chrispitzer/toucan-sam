@@ -73,7 +73,7 @@ $(function(){
                 update_time(time);
             }, 1000);
         } else {
-            $("#timer").text("Start Time");
+            $("#timer").text("Time it!");
             clearInterval(timer);
             $("#update_time #seconds").val(time);
             $("#update_time").submit();
@@ -106,11 +106,15 @@ $(function(){
     <h1 id="song_title" class="randocolor">
         {{ song.title }}
         <span id="time">{{ song.run_time }}</span>
+    
+        {% if user.is_staff %}
         <a href="#" id="timer" class="btn btn-info">Time it!</a>
         <form id="update_time" method="post"> {% csrf_token %}
             <input type="hidden" name="update_time" value="yup"/>
             <input type="hidden" id="seconds" name="seconds" value="0"/>
         </form>
+        {% endif %}
+
         {% if song.proposed and user.is_staff %}
         <form method="post" class="float_right"> {% csrf_token %}
             I'm a proposal!
