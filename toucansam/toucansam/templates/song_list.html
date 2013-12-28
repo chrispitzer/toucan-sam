@@ -109,6 +109,7 @@
                 <th>Artist</th>
                 <th>Key</th>
                 <th>Singers</th>
+                <th>Length</th>
                 <th>Difficulty</th>
                 <th>Video</th>
             </tr>
@@ -127,6 +128,7 @@
                     <td>{{ song.artist }}</td>
                     <td>{{ song.key }}</td>
                     <td>{{ song.singers }}</td>
+                    <td>{{ song.run_time }}</td>
                     <td class="difficulty">
                         <span class="hidden">{{ song.difficulty }}</span>
                         {% for i in '1'|range:'6' %}
