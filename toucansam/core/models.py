@@ -41,6 +41,10 @@ class Song(models.Model):
     objects = models.Manager()
     active_objects = ActiveSongsManager()
 
+    @property
+    def milliseconds(self):
+        return self.run_time.total_seconds() * 1000
+
     def has_no_lyrics(self):
         return len(self.lyrics_with_chords) < 50
 

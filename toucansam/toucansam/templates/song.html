@@ -8,48 +8,76 @@
 
 {% block extra_css %}
 <style type="text/css" media="screen">
-#embedded {
-    width: 100%;
-    text-align: center;
-}
+    #embedded {
+        width: 100%;
+        text-align: center;
+    }
 
-#cheatsheet {
-    width: 100%;
-    height: 60px;
-}
-#cheatsheet-inner {
-    width: 100%;
-}
-#cheatsheet h3 {
-    margin: 0;
-}
+    #cheatsheet {
+        width: 100%;
+        height: 60px;
+    }
+    #cheatsheet-inner {
+        width: 100%;
+    }
+    #cheatsheet h3 {
+        margin: 0;
+    }
 
-h1 form {
-    font-size: large;
-}
+    .btn {
+        margin: 5px;
+    }
+    
+    #playtime {
+        display: none;
+    }
 
-.scrolling {
-    position: fixed;
-    top: 51px;
-}
-.scrolling.pinned {
-    position: relative;
-}
-#time {
-    padding-left: 1em;
-}
-form#update_time {
-    display: none;
-}
-#attic {
-    display: none;
-}
+    h1 form {
+        font-size: large;
+    }
 
+    .scrolling {
+        position: fixed;
+        top: 51px;
+    }
+    .scrolling.pinned {
+        position: relative;
+    }
+    #time {
+        padding-left: 1em;
+    }
+    form#update_time {
+        display: none;
+    }
+    #attic {
+        display: none;
+    }
 </style>
 {% endblock %}
 
 {% block extra_scripts %}
 <script>
+Number.prototype.toMMSS = function () {
+    var sec_num = this;
+    var minutes = Math.floor(sec_num / 60);
+    var seconds = sec_num - (minutes * 60);
+
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    var time    = minutes+':'+seconds;
+    return time;
+}
+
+$.easing.toucan = function(t, millisecondsSince, startValue, endValue, totalDuration) {
+    if (t < 0.1) {
+        return 0;
+    } else if (t > 0.7) {
+        return 1;
+    } else {
+        return (t - 0.1) / 0.6;
+    }
+};
+
 $(function(){
     $(window).scroll(function() {
       $('#cheatsheet-inner').toggleClass('scrolling', $(window).scrollTop() + 51 > $('#cheatsheet').offset().top);
@@ -61,6 +89,53 @@ $(function(){
         var text = $(event.target).text();
         $(event.target).text(text == "Pin" ? "Unpin" : "Pin");
     });
+
+    var playing = false;
+    function toggle_play() {
+        if (playing) {
+            playing = false;
+            $("#play").text("Play");
+            $("#playtime").hide();
+            $('html, body').stop(true, false);
+        } else {
+            playing = true;
+            $("#play").text("Stop");
+            $("#playtime").show();
+
+            var cheatsheet_bottom = $("#cheatsheet").offset().top - $("#cheatsheet").height();
+            $('html, body').animate({
+                scrollTop: cheatsheet_bottom + 'px'
+            }, {
+                duration: 'fast',
+                complete: function () {
+                    var time = 0;
+                    var timer = setInterval(function(){
+                        time++;
+                    }, 1000);
+                    $('html, body').animate({
+                        scrollTop: $(document).height()
+                    }, {
+                        duration: {{ song.milliseconds }},
+                        easing: 'toucan',
+                        step: function () {
+                            $("#playtime").text(time.toMMSS());
+                        },
+                        complete: function () {
+                            if (playing) {
+                                toggle_play();
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    $("#play").click(function (event) {
+        event.preventDefault();
+        toggle_play();
+    });
+
     var time = 0;
     var timing = false;
     var timer;
@@ -154,6 +229,8 @@ $(function(){
                 <h3 class="randocolor">
                     cheat sheet: {{ song.cheat_sheet }}
                     <a href="#" class="pin btn btn-info float_right">Unpin</a>
+                    <a href="#" id="play" class="btn btn-info float_right">Play</a>
+                    <span id="playtime" class="float_right">0:00</span>
                 </h3>
             </div>
         </div>
