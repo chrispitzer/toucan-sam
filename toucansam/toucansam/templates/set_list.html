@@ -13,6 +13,9 @@
 
 {% block extra_css %}
 <style type="text/css" media="screen">
+    html {
+        overflow: hidden;
+    }
     table {
         background-color: white;
     }
@@ -54,7 +57,7 @@
 
         var stretch_lists = function() {
             $('.row').height(
-                $(window).height() - ( $('body').height() - $('.row').height() ) - 20
+                $(window).height() - ( $('body').height() - $('.row').height() ) - $('.row').offset().top
             );
         };
 
@@ -137,12 +140,6 @@
 {% endblock %}
 
 {% block content %}
-<div  class="randocolor">
-    <h2>Build you a set list!</h2>
-        Drag items from the table on the left to the set list on the right. You can also drag-and-drop to
-        reorder items in the setlist.
-</div>
-
 <div class="row">
     <div class="span7">
         <h2 class="randocolor">
