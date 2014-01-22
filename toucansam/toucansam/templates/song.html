@@ -69,12 +69,12 @@ Number.prototype.toMMSS = function () {
 }
 
 $.easing.toucan = function(t, millisecondsSince, startValue, endValue, totalDuration) {
-    if (t < 0.1) {
+    if (t < 0.05) {
         return 0;
-    } else if (t > 0.7) {
+    } else if (t > 0.85) {
         return 1;
     } else {
-        return (t - 0.1) / 0.6;
+        return (t - 0.05);
     }
 };
 
@@ -113,7 +113,7 @@ $(function(){
                         time++;
                     }, 1000);
                     $('html, body').animate({
-                        scrollTop: $(document).height()
+                        scrollTop: $(document).height() - $(window).height()
                     }, {
                         duration: {{ song.milliseconds }},
                         easing: 'toucan',
