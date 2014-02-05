@@ -47,7 +47,13 @@
         padding-left: 1em;
     }
     form#update_time {
+        display: inline;
+    }
+    form#update_time #runtime_field {
         display: none;
+        font-size: 28pt;
+        height: 1em;
+        width: 4em;
     }
     #attic {
         display: none;
@@ -136,31 +142,22 @@ $(function(){
         toggle_play();
     });
 
-    var time = 0;
-    var timing = false;
-    var timer;
-    $("#timer").click(function (event) {
-        event.preventDefault();
-        timing = !timing;
-        if (timing) {
-            $("#timer").text("Stop Time");
-            time = 0;
-            update_time(time);
-            timer = setInterval(function(){
-                time++;
-                update_time(time);
-            }, 1000);
-        } else {
-            $("#timer").text("Time it!");
-            clearInterval(timer);
-            $("#update_time #seconds").val(time);
-            $("#update_time").submit();
-        }
+    {% if user.is_staff %}
+    var time_dislpay = $("#time");
+    var time_form = $("#update_time");
+    var time_field = $("#update_time #runtime_field");
+    time_dislpay.css({'cursor': 'pointer'});
+    time_dislpay.click(function(event){
+        time_dislpay.hide();
+        time_field.show();
     });
-    function update_time(time) {
-        var interval = moment().startOf('day').seconds(time);
-        $("#time").text(interval.format('H:mm:ss'));
-    }
+    time_field.focusout(function(event) {
+        time_dislpay.text($("#update_time #runtime_field").value);
+        time_dislpay.hide();
+        time_field.show();
+        time_form.submit();
+    });
+    {% endif %}
 });
 </script>
 {% endblock %}
@@ -183,13 +180,13 @@ $(function(){
 {% block content %}
     <h1 id="song_title" class="randocolor">
         {{ song.title }}
+
         <span id="time">{{ song.run_time }}</span>
 
         {% if user.is_staff %}
-        <a href="#" id="timer" class="btn btn-info">Time it!</a>
         <form id="update_time" method="post"> {% csrf_token %}
             <input type="hidden" name="update_time" value="yup"/>
-            <input type="hidden" id="seconds" name="seconds" value="0"/>
+            <input type="text" id="runtime_field" name="runtime" value="{{ song.run_time }}"/>
         </form>
         {% endif %}
 

@@ -227,7 +227,10 @@ class SongView(MobileTemplateView):
             song.proposed = False
             song.save()
         elif 'update_time' in request.POST:
-            song.run_time = int(request.POST['seconds'])*1000000
+            if 'seconds' in request.POST:
+                song.run_time = int(request.POST['seconds'])*1000000
+            elif 'runtime' in request.POST:
+                song.run_time = request.POST['runtime'];
             song.save()
         elif 'update_difficulty' in request.POST:
             song.difficulty = int(request.POST['difficulty'])
