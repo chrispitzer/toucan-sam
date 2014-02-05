@@ -43,7 +43,8 @@
     .scrolling.pinned {
         position: relative;
     }
-    #time {
+    #time,
+    form#update_time {
         padding-left: 1em;
     }
     form#update_time {
@@ -51,7 +52,7 @@
     }
     form#update_time #runtime_field {
         display: none;
-        font-size: 28pt;
+        font-size: 25pt;
         height: 1em;
         width: 4em;
     }
@@ -155,6 +156,7 @@ $(function(){
     time_dislpay.click(function(event){
         time_dislpay.hide();
         time_field.show();
+        time_field.focus();
     });
     time_field.focusout(function(event) {
         time_dislpay.text($("#update_time #runtime_field").value);
