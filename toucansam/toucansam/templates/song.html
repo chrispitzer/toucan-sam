@@ -55,6 +55,9 @@
         height: 1em;
         width: 4em;
     }
+    #save_time {
+        display: none;
+    }
     #attic {
         display: none;
     }
@@ -101,12 +104,14 @@ $(function(){
         if (playing) {
             playing = false;
             $("#play").text("Play");
-            $("#playtime").hide();
+            $("#save_time input[name=runtime]").val("0:"+$("#playtime").text());
+            $("#save_time").show();
             $('html, body').stop(true, false);
         } else {
             playing = true;
             $("#play").text("Stop");
             $("#playtime").show();
+            $("#save_time").hide();
 
             var cheatsheet_bottom = $("#cheatsheet").offset().top - $("#cheatsheet").height();
             $('html, body').animate({
@@ -228,6 +233,11 @@ $(function(){
                     <a href="#" class="pin btn btn-info float_right">Unpin</a>
                     <a href="#" id="play" class="btn btn-info float_right">Play</a>
                     <span id="playtime" class="float_right">0:00</span>
+                    <form id="save_time" class="float_right" method="post"> {% csrf_token %}
+                        <input type="hidden" name="update_time" value="yup"/>
+                        <input type="hidden" name="runtime" value=""/>
+                        <input type="submit" class="btn btn-info" value="Save Time"/>
+                    </form>
                 </h3>
             </div>
         </div>
