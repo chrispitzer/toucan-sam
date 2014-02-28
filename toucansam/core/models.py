@@ -15,6 +15,7 @@ class ActiveSongsManager(models.Manager):
 
 class Song(models.Model):
     title = models.CharField(max_length=255, blank=True)
+    short_title = models.CharField(max_length=30, blank=True)
     artist = models.CharField(max_length=255, blank=True)
 
     key = models.CharField(max_length=25, blank=True)
@@ -40,6 +41,11 @@ class Song(models.Model):
 
     objects = models.Manager()
     active_objects = ActiveSongsManager()
+
+    def save(self, *args, **kwargs):
+        if not self.short_title and self.title:
+            self.short_title = self.title[-30:]
+        super(Song, self).save(*args, **kwargs)
 
     @property
     def milliseconds(self):

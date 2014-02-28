@@ -59,13 +59,13 @@
     <ul id="choose" class="tab">
         {% for song in songs %}
         <li data-id="{{ song.id }}" class="{% if song in set_list.songs.all %}chosen{% endif %}">
-            {{ song.title }}
+            {{ song.short_title }}
         </li>
         {% endfor %}
     </ul>
     <ol id="sort" class="tab selected">
         {% for song in set_list.ordered_songs %}
-        <li data-id="{{ song.id }}">{{ song.title }}</li>
+        <li data-id="{{ song.id }}">{{ song.short_title }}</li>
         {% endfor %}
     </ol>
 </div>

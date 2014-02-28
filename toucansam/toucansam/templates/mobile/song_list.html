@@ -47,7 +47,7 @@
     <tbody>
         {% for song in songs %}
         <tr class="{% if song.proposed %}proposed{% endif %}" href="{% url "song" song.id %}">
-            <td>{{ song.title }}</td>
+            <td>{{ song.short_title }}</td>
             <td>{{ song.artist }}</td>
         </tr>
         {% endfor %}

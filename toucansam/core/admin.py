@@ -7,6 +7,7 @@ from core.models import Song, SetList, Gig
 class SongAdmin(admin.ModelAdmin):
     list_display = (
         'title',
+        'short_title',
         'artist',
         'key',
         'singers',
@@ -16,6 +17,7 @@ class SongAdmin(admin.ModelAdmin):
         'active'
     )
     list_editable = (
+        'short_title',
         'singers',
         'run_time',
         'difficulty',
