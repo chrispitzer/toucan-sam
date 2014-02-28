@@ -189,6 +189,7 @@ $(function(){
         {{ song.title }}
 
         <span id="time">{{ song.run_time }}</span>
+        <a href="{% url 'print_song' song_id=song.id %}" class="btn btn-info float_right" target="_new">Print</a>
 
         {% if user.is_staff %}
         <form id="update_time" method="post"> {% csrf_token %}

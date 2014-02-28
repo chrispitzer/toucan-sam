@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>{{ song.title }}</title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <h1>{{ song.title }}</h1>
+        <h3>by {{ song.artist }}</h3>
+        {% if song.cheat_sheet %}
+            <h3>{{ song.cheat_sheet }}</h3>
+        {% endif %}
+        <pre>{{ song.lyrics_with_chords }}</pre>
+    </body>
+</html>

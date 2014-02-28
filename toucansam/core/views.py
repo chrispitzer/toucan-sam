@@ -238,6 +238,9 @@ class SongView(MobileTemplateView):
 
         return redirect("song", song_id)
 
+class PrintSongView(SongView):
+    template_name = "print_song.html"
+
 
 class CheatSheetView(TemplateView):
     template_name = "cheat_sheet.html"
