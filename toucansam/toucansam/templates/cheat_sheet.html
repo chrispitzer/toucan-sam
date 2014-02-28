@@ -1,5 +1,13 @@
-<html>
-<head>
+{% extends "printable_base.html" %}
+
+{% block title %}
+    {% if set_list %}
+        {{ set_list.name }}
+    {% else %}
+        The Master Cheat Sheet
+    {% endif %}
+{% endblock %}
+{% block head_style %}
 <style>
     table {
         width: {{ column_width }}%;
@@ -7,19 +15,19 @@
         padding: 0 10px;
     }
 </style>
-</head>
-<body>
-<table>
-{% for songs in song_columns %}
-    {% for song in songs %}
-        <tr>
-        <td>{{ song.title }}</td>
-        <td>{{ song.cheat_sheet }}</td>
-        </tr>
+{% endblock %}
+
+{% block content %}
+    <table>
+    {% for songs in song_columns %}
+        {% for song in songs %}
+            <tr>
+            <td>{{ song.title }}</td>
+            <td>{{ song.cheat_sheet }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <table>
     {% endfor %}
     </table>
-    <table>
-{% endfor %}
-</table>
-</body>
-</html>
+{% endblock %}

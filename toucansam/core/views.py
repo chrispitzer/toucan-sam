@@ -60,7 +60,7 @@ class MobileTemplateView(TemplateView):
                                     "keji", "leno", "lg-c", "lg-d", "lg-g", "lge-",
                                     "maui", "maxo", "midp", "mits", "mmef", "mobi",
                                     "mot-", "moto", "mwbp", "nec-", "newt", "noki",
-                                    "xda",  "palm", "pana", "pant", "phil", "play",
+                                    "xda", "palm", "pana", "pant", "phil", "play",
                                     "port", "prox", "qwap", "sage", "sams", "sany",
                                     "sch-", "sec-", "send", "seri", "sgh-", "shar",
                                     "sie-", "siem", "smal", "smar", "sony", "sph-",
@@ -136,7 +136,6 @@ class AjaxException(Exception):
 
 
 class AjaxView(View):
-
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         try:
@@ -147,7 +146,6 @@ class AjaxView(View):
 
 
 class SetListAjax(AjaxView):
-
     @method_decorator(staff_member_required)
     def post(self, request, set_list_id):
         gig_name = request.POST.get("gig_name")
@@ -177,7 +175,6 @@ class SetListAjax(AjaxView):
 
 
 class UpdateSetListAjax(AjaxView):
-
     @method_decorator(staff_member_required)
     def post(self, request, set_list_id):
         set_list = get_object_or_404(SetList, id=set_list_id)
@@ -209,6 +206,7 @@ class SetListList(MobileTemplateView):
         context['set_list_list'] = SetList.objects.all()
         return context
 
+
 set_list_list = SetListList.as_view()
 
 
@@ -228,7 +226,7 @@ class SongView(MobileTemplateView):
             song.save()
         elif 'update_time' in request.POST:
             if 'seconds' in request.POST:
-                song.run_time = int(request.POST['seconds'])*1000000
+                song.run_time = int(request.POST['seconds']) * 1000000
             elif 'runtime' in request.POST:
                 song.run_time = request.POST['runtime'];
             song.save()
@@ -237,6 +235,7 @@ class SongView(MobileTemplateView):
             song.save()
 
         return redirect("song", song_id)
+
 
 class PrintSongView(SongView):
     template_name = "print_song.html"
@@ -265,12 +264,25 @@ class CheatSheetView(TemplateView):
             columns.append(songs[start:end])
             start = end
 
-        context['column_width'] = (1./column_count) * 100
+        context['column_width'] = (1. / column_count) * 100
         context['song_columns'] = columns
         return context
 
 
-class RandoColor(AjaxView):
+class PrintSongsView(TemplateView):
+    template_name = "print_all_songs.html"
 
+    def get_context_data(self, set_list_id=None, **kwargs):
+        context = super(PrintSongsView, self).get_context_data(**kwargs)
+        if set_list_id is not None:
+            set_list = get_object_or_404(SetList, id=set_list_id)
+            context['set_list'] = set_list
+            context['songs'] = set_list.ordered_songs
+        else:
+            context['songs'] = Song.active_objects.order_by('title')
+        return context
+
+
+class RandoColor(AjaxView):
     def get(self, request):
         return randocolor()

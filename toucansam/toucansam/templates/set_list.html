@@ -191,6 +191,7 @@
             Set List
             {% if set_list_id != "new" %}
             <a href="{% url "cheat_sheet" set_list_id %}" class="btn btn-info float_right" target="_blank">Print a cheat sheet</a>
+            <a href="{% url "print_songs_in" set_list_id %}" class="btn btn-info float_right" target="_blank">Print all songs</a>
             {% endif %}
         </h2>
         <form id="save_set_list" action="" method="post">

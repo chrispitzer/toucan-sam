@@ -1,0 +1,25 @@
+{% extends "printable_base.html" %}
+
+{% block title %}
+    {% if set_list %}
+        {{ set_list.name }}
+    {% else %}
+        Gotta Print 'em All
+    {% endif %}
+{% endblock %}
+
+{% block head_style %}
+<style>
+    .song {
+        page-break-after: always;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    {% for song in songs %}
+        <div class="song">
+        {% include "printable_song.html" %}
+        </div>
+    {% endfor %}
+{% endblock %}
