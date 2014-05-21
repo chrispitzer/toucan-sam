@@ -67,7 +67,7 @@ class Song(models.Model):
         def chordify(chord, cssclass="chord"):
             return '<span class="{}">{}</span>'.format(cssclass, chord)
         def lineify(line):
-            return "<p>{}</p>".format(line)
+            return u"<p>{}</p>".format(line)
 
         output = []
         chord_line = None
@@ -101,7 +101,7 @@ class Song(models.Model):
 
             output.append(lineify(line))
 
-        return mark_safe("\n".join(output))  # todo: sanitize input
+        return mark_safe(u"\n".join(output))  # todo: sanitize input
 
     def has_no_lyrics(self):
         return len(self.lyrics_with_chords) < 50
