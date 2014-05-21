@@ -1,8 +1,10 @@
+import re
 from urlparse import urlparse, parse_qs
 from datetime import timedelta
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.safestring import mark_safe
 from durationfield.db.models.fields.duration import DurationField
 
 
@@ -50,6 +52,56 @@ class Song(models.Model):
     @property
     def milliseconds(self):
         return self.run_time.total_seconds() * 1000
+
+    @property
+    def column_width(self):
+        return reduce(lambda a, b: max(a, len(b)), re.split("[\r\n]+", self.lyrics_with_chords), 0)
+
+    @property
+    def lyrics_formatted(self):
+        """
+        Assumes that lyrics with chords interleaves lines with chords and lines with lyrics
+        """
+        def tokenize(s):
+            return re.split(r'(\w+)', s)
+        def chordify(chord, cssclass="chord"):
+            return '<span class="{}">{}</span>'.format(cssclass, chord)
+        def lineify(line):
+            return "<p>{}</p>".format(line)
+
+        output = []
+        chord_line = None
+        chord_regex = re.compile(r"^(\W*[ABCDEFG]b?(m|min|maj|maj)?\d*\W*)+$", flags=re.IGNORECASE)
+        for line in re.split("[\r\n]+", self.lyrics_with_chords):
+            line = line.rstrip()
+            if chord_regex.match(line):
+                if chord_line:
+                    formatted_line = ""
+                    for chord in tokenize(chord_line):
+                        if re.match("\W", chord):
+                            formatted_line += chord
+                        else:
+                            formatted_line += chordify(chord, cssclass="chord inline")
+                    output.append(lineify(formatted_line))
+
+                chord_line = line
+                continue
+            if chord_line:
+                formatted_line = ""
+                line = line.ljust(len(chord_line))
+                chords = tokenize(chord_line)
+                for chord in chords:
+                    l = len(chord)
+                    if not (chord+" ").isspace():
+                        formatted_line += chordify(chord)
+                    formatted_line += line[:l]
+                    line = line[l:]
+                line = formatted_line + line
+                chord_line = None
+
+            output.append(lineify(line))
+
+        return mark_safe("\n".join(output))  # todo: sanitize input
 
     def has_no_lyrics(self):
         return len(self.lyrics_with_chords) < 50

@@ -24,7 +24,9 @@
     </a>
     {% endif %}
     <h4 id="cheat-sheet" class="randocolor">{{ song.cheat_sheet }}</h4>
-    <pre id="lyrics">{{ song.lyrics_with_chords }}</pre>
+    <pre id="lyrics">
+        {{ song.lyrics_with_chords }}
+    </pre>
 {% endblock %}
 
 {% block extra_scripts %}

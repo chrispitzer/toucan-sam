@@ -4,6 +4,7 @@
 
 {% block extra_js %}
     <script src="{{ STATIC_URL }}js/moment-with-langs.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.columnizer.js"></script>
 {% endblock %}
 
 {% block extra_css %}
@@ -62,6 +63,28 @@
     #attic {
         display: none;
     }
+    #lyrics {
+        background-color: rgba(255,255,255,.9);
+        padding: 1.5em;
+    }
+    #lyrics p {
+        vertical-align: bottom;
+        margin: 0;
+        width: auto;
+    }
+    #lyrics .chord {
+        vertical-align: top;
+        width: 0;
+        height: 2.5em;
+        display: inline-block;
+        overflow: visible;
+        color: #1e90ff;
+        font-weight: bold;
+    }
+    #lyrics .chord.inline {
+        width: auto;
+        height: auto;
+    }
 </style>
 {% endblock %}
 
@@ -89,6 +112,8 @@ $.easing.toucan = function(t, millisecondsSince, startValue, endValue, totalDura
 };
 
 $(function(){
+    $("#lyrics").columnize();
+
     $(window).scroll(function() {
       $('#cheatsheet-inner').toggleClass('scrolling', $(window).scrollTop() + 51 > $('#cheatsheet').offset().top);
         $('#cheatsheet-inner h3').width($('#lyrics').width());
@@ -233,8 +258,8 @@ $(function(){
             <div id="cheatsheet-inner" class="pinnable" >
                 <h3 class="randocolor">
                     cheat sheet: {{ song.cheat_sheet }}
-                    <a href="#" class="pin btn btn-info float_right">Unpin</a>
-                    <a href="#" id="play" class="btn btn-info float_right">Play</a>
+{#                    <a href="#" class="pin btn btn-info float_right">Unpin</a>#}
+{#                    <a href="#" id="play" class="btn btn-info float_right">Play</a>#}
                     <span id="playtime" class="float_right">0:00</span>
                     <form id="save_time" class="float_right" method="post"> {% csrf_token %}
                         <input type="hidden" name="update_time" value="yup"/>
@@ -246,7 +271,7 @@ $(function(){
         </div>
     {% endif %}
 
-    <pre id="lyrics">{{ song.lyrics_with_chords }}</pre>
+    <div id="lyrics">{{ song.lyrics_formatted }}</div>
 
     <div id="attic">
 
