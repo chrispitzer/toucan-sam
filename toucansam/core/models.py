@@ -88,15 +88,21 @@ class Song(models.Model):
                 continue
             if chord_line:
                 formatted_line = ""
+                #make sure line is as long as chords
                 line = line.ljust(len(chord_line))
+                #replace spaces at the beginning & end of the line with &nbsp; -- but not the middle!
+                frontspaces, line, endspaces = re.split(r"(\S[\s\S]*\S|\S)", line)
+                space = '&nbsp;&nbsp;'
+                line = [space]*len(frontspaces) + list(line) + [space]*len(endspaces)
+
                 chords = tokenize(chord_line)
                 for chord in chords:
                     l = len(chord)
                     if not (chord+" ").isspace():
                         formatted_line += chordify(chord)
-                    formatted_line += line[:l]
+                    formatted_line += "".join(line[:l])
                     line = line[l:]
-                line = formatted_line + line
+                line = formatted_line + "".join(line)
                 chord_line = None
 
             output.append(lineify(line))
