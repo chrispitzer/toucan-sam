@@ -77,6 +77,7 @@
         width: 0;
         height: 2.5em;
         display: inline-block;
+        vertical-align: text-bottom;
         overflow: visible;
         color: #1e90ff;
         font-weight: bold;
@@ -214,7 +215,7 @@ $(function(){
         {{ song.title }}
 
         <span id="time">{{ song.run_time }}</span>
-        <a href="{% url 'print_song' song_id=song.id %}" class="btn btn-info float_right" target="_new">Print</a>
+        <a href="{% url 'print_song' song_id=song.id %}" class="btn btn-info float_right" target="_blank">Print</a>
 
         {% if user.is_staff %}
         <form id="update_time" method="post"> {% csrf_token %}
@@ -248,7 +249,7 @@ $(function(){
     </h4>
     {% if song.youtube_video_id %}
     <div id="embedded">
-        <iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/{{ song.youtube_video_id }}" allowfullscreen frameborder="0">
+        <iframe class="youtube-player" width="640" height="385" src="http://www.youtube.com/embed/{{ song.youtube_video_id }}" allowfullscreen style="border:0;">
         </iframe>
     </div>
     {% endif %}
@@ -256,17 +257,19 @@ $(function(){
     {% if song.cheat_sheet %}
         <div id="cheatsheet">
             <div id="cheatsheet-inner" class="pinnable" >
+            <form id="save_time" class="float_right" method="post"> {% csrf_token %}
                 <h3 class="randocolor">
                     cheat sheet: {{ song.cheat_sheet }}
 {#                    <a href="#" class="pin btn btn-info float_right">Unpin</a>#}
 {#                    <a href="#" id="play" class="btn btn-info float_right">Play</a>#}
                     <span id="playtime" class="float_right">0:00</span>
-                    <form id="save_time" class="float_right" method="post"> {% csrf_token %}
-                        <input type="hidden" name="update_time" value="yup"/>
-                        <input type="hidden" name="runtime" value=""/>
-                        <input type="submit" class="btn btn-info" value="Save Time"/>
-                    </form>
-                </h3>
+                    
+                    <input type="hidden" name="update_time" value="yup"/>
+                    <input type="hidden" name="runtime" value=""/>
+                    <input type="submit" class="btn btn-info" value="Save Time"/>
+                   
+                </h3> 
+            </form>
             </div>
         </div>
     {% endif %}

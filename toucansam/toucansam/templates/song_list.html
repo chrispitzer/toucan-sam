@@ -46,7 +46,7 @@
 {% block extra_scripts %}
 <script src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
     $(function() {
         $('#song_list').dataTable({
             bPaginate:false,
@@ -147,8 +147,8 @@
                                  {% endif %}
                                  data-difficulty="{{ i }}"
                                  data-song-url="{% url 'song' song.id %}"
-                                 class="uke u{{ i }} {% if i <= song.difficulty %}on{% endif %}">
-                             </img>
+                                 class="uke u{{ i }} {% if i <= song.difficulty %}on{% endif %}"
+                                 alt="difficulty {{ song.difficulty }}">
                         {% endfor %}
                     </td>
                     <td>
