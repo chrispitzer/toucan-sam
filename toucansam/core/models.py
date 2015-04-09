@@ -3,6 +3,7 @@ from urlparse import urlparse, parse_qs
 from datetime import timedelta
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
 from django.db import models
 from django.utils.safestring import mark_safe
 from durationfield.db.models.fields.duration import DurationField
@@ -131,10 +132,26 @@ class Song(models.Model):
         ordering = ["title"]
 
 
+class Location(models.Model):
+    name = models.CharField(max_length=255)
+    address = models.TextField()
+
+    def __unicode__(self):
+        return self.name
+
+class UpcomingGigManager(models.Manager):
+    def get_queryset(self, *args, **kwargs):
+        return super(UpcomingGigManager, self).get_queryset().filter(
+            date__gte=timezone.now())
+
 class Gig(models.Model):
     name = models.CharField(max_length=255)
     date = models.DateTimeField(null=True)
+    location = models.ForeignKey(Location, blank=False, null=True)
 
+    objects = models.Manager()
+    upcoming = UpcomingGigManager()
+    
     def __unicode__(self):
         return self.name or "undefined"
 
